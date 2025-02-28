@@ -1,0 +1,17 @@
+D:\Repositorios\Treinamentos\simple-pag\simple-pag-Infra\bin\Debug\net8.0\simple-pag-Infra.deps.json
+D:\Repositorios\Treinamentos\simple-pag\simple-pag-Infra\bin\Debug\net8.0\simple-pag-Infra.dll
+D:\Repositorios\Treinamentos\simple-pag\simple-pag-Infra\bin\Debug\net8.0\simple-pag-Infra.pdb
+D:\Repositorios\Treinamentos\simple-pag\simple-pag-Infra\bin\Debug\net8.0\simple-pag-Domain.dll
+D:\Repositorios\Treinamentos\simple-pag\simple-pag-Infra\bin\Debug\net8.0\simple-pag-Domain.pdb
+D:\Repositorios\Treinamentos\simple-pag\simple-pag-Infra\obj\Debug\net8.0\simple-pag-Infra.csproj.AssemblyReference.cache
+D:\Repositorios\Treinamentos\simple-pag\simple-pag-Infra\obj\Debug\net8.0\simple-pag-Infra.GeneratedMSBuildEditorConfig.editorconfig
+D:\Repositorios\Treinamentos\simple-pag\simple-pag-Infra\obj\Debug\net8.0\simple-pag-Infra.AssemblyInfoInputs.cache
+D:\Repositorios\Treinamentos\simple-pag\simple-pag-Infra\obj\Debug\net8.0\simple-pag-Infra.AssemblyInfo.cs
+D:\Repositorios\Treinamentos\simple-pag\simple-pag-Infra\obj\Debug\net8.0\simple-pag-Infra.csproj.CoreCompileInputs.cache
+D:\Repositorios\Treinamentos\simple-pag\simple-pag-Infra\obj\Debug\net8.0\simple-p.5A5A4259.Up2Date
+D:\Repositorios\Treinamentos\simple-pag\simple-pag-Infra\obj\Debug\net8.0\simple-pag-Infra.dll
+D:\Repositorios\Treinamentos\simple-pag\simple-pag-Infra\obj\Debug\net8.0\refint\simple-pag-Infra.dll
+D:\Repositorios\Treinamentos\simple-pag\simple-pag-Infra\obj\Debug\net8.0\simple-pag-Infra.pdb
+D:\Repositorios\Treinamentos\simple-pag\simple-pag-Infra\obj\Debug\net8.0\ref\simple-pag-Infra.dll
+D:\Repositorios\Treinamentos\simple-pag\simple-pag-Infra\bin\Debug\net8.0\simple-pag-Infra.runtimeconfig.json
+D:\Repositorios\Treinamentos\simple-pag\simple-pag-Infra\obj\Debug\net8.0\simple-pag-Infra.genruntimeconfig.cache

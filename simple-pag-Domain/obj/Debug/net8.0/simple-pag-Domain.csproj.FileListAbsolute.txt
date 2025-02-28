@@ -1,0 +1,14 @@
+D:\Repositorios\Treinamentos\simple-pag\simple-pag-Domain\bin\Debug\net8.0\simple-pag-Domain.deps.json
+D:\Repositorios\Treinamentos\simple-pag\simple-pag-Domain\bin\Debug\net8.0\simple-pag-Domain.dll
+D:\Repositorios\Treinamentos\simple-pag\simple-pag-Domain\bin\Debug\net8.0\simple-pag-Domain.pdb
+D:\Repositorios\Treinamentos\simple-pag\simple-pag-Domain\obj\Debug\net8.0\simple-pag-Domain.GeneratedMSBuildEditorConfig.editorconfig
+D:\Repositorios\Treinamentos\simple-pag\simple-pag-Domain\obj\Debug\net8.0\simple-pag-Domain.AssemblyInfoInputs.cache
+D:\Repositorios\Treinamentos\simple-pag\simple-pag-Domain\obj\Debug\net8.0\simple-pag-Domain.AssemblyInfo.cs
+D:\Repositorios\Treinamentos\simple-pag\simple-pag-Domain\obj\Debug\net8.0\simple-pag-Domain.csproj.CoreCompileInputs.cache
+D:\Repositorios\Treinamentos\simple-pag\simple-pag-Domain\obj\Debug\net8.0\simple-pag-Domain.dll
+D:\Repositorios\Treinamentos\simple-pag\simple-pag-Domain\obj\Debug\net8.0\refint\simple-pag-Domain.dll
+D:\Repositorios\Treinamentos\simple-pag\simple-pag-Domain\obj\Debug\net8.0\simple-pag-Domain.pdb
+D:\Repositorios\Treinamentos\simple-pag\simple-pag-Domain\obj\Debug\net8.0\ref\simple-pag-Domain.dll
+D:\Repositorios\Treinamentos\simple-pag\simple-pag-Domain\bin\Debug\net8.0\simple-pag-Domain.runtimeconfig.json
+D:\Repositorios\Treinamentos\simple-pag\simple-pag-Domain\obj\Debug\net8.0\simple-pag-Domain.csproj.AssemblyReference.cache
+D:\Repositorios\Treinamentos\simple-pag\simple-pag-Domain\obj\Debug\net8.0\simple-pag-Domain.genruntimeconfig.cache
