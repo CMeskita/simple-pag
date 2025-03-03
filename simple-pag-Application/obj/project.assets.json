@@ -2969,23 +2969,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\danie\\.nuget\\packages\\": {},
+    "C:\\Users\\DIASSIS\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Repositorios\\Treinamentos\\simple-pag\\simple-pag-Application\\simple-pag-Application.csproj",
+      "projectUniqueName": "C:\\Users\\DIASSIS\\Desktop\\Projeto API\\Projeto\\simple-pag\\simple-pag-Application\\simple-pag-Application.csproj",
       "projectName": "simple-pag-Application",
-      "projectPath": "D:\\Repositorios\\Treinamentos\\simple-pag\\simple-pag-Application\\simple-pag-Application.csproj",
-      "packagesPath": "C:\\Users\\danie\\.nuget\\packages\\",
-      "outputPath": "D:\\Repositorios\\Treinamentos\\simple-pag\\simple-pag-Application\\obj\\",
+      "projectPath": "C:\\Users\\DIASSIS\\Desktop\\Projeto API\\Projeto\\simple-pag\\simple-pag-Application\\simple-pag-Application.csproj",
+      "packagesPath": "C:\\Users\\DIASSIS\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\DIASSIS\\Desktop\\Projeto API\\Projeto\\simple-pag\\simple-pag-Application\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\danie\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\DIASSIS\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -3001,11 +3001,11 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "D:\\Repositorios\\Treinamentos\\simple-pag\\simple-pag-Domain\\simple-pag-Domain.csproj": {
-              "projectPath": "D:\\Repositorios\\Treinamentos\\simple-pag\\simple-pag-Domain\\simple-pag-Domain.csproj"
+            "C:\\Users\\DIASSIS\\Desktop\\Projeto API\\Projeto\\simple-pag\\simple-pag-Domain\\simple-pag-Domain.csproj": {
+              "projectPath": "C:\\Users\\DIASSIS\\Desktop\\Projeto API\\Projeto\\simple-pag\\simple-pag-Domain\\simple-pag-Domain.csproj"
             },
-            "D:\\Repositorios\\Treinamentos\\simple-pag\\simple-pag-Infra\\simple-pag-Infra.csproj": {
-              "projectPath": "D:\\Repositorios\\Treinamentos\\simple-pag\\simple-pag-Infra\\simple-pag-Infra.csproj"
+            "C:\\Users\\DIASSIS\\Desktop\\Projeto API\\Projeto\\simple-pag\\simple-pag-Infra\\simple-pag-Infra.csproj": {
+              "projectPath": "C:\\Users\\DIASSIS\\Desktop\\Projeto API\\Projeto\\simple-pag\\simple-pag-Infra\\simple-pag-Infra.csproj"
             }
           }
         }
@@ -3019,7 +3019,8 @@
         "enableAudit": "true",
         "auditLevel": "low",
         "auditMode": "direct"
-      }
+      },
+      "SdkAnalysisLevel": "9.0.100"
     },
     "frameworks": {
       "net8.0": {
@@ -3056,7 +3057,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.101/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
