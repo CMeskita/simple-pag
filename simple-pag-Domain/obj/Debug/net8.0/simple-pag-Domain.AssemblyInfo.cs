@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("simple-pag-Domain")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+793d7f8a0edab2a75fd2287afb5e436e6186ae83")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c77bd57acf0cf1b42c84777b0461b4cfa5c97088")]
 [assembly: System.Reflection.AssemblyProductAttribute("simple-pag-Domain")]
 [assembly: System.Reflection.AssemblyTitleAttribute("simple-pag-Domain")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
