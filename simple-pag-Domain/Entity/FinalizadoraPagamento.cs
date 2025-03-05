@@ -7,14 +7,14 @@ public class FinalizadoraPagamento
     {
     }
 
-    public FinalizadoraPagamento(string id, string finalizadoraId, string formaPagamentoId, string sigla, string modalidade, string registro, StatusPagamento statusPagamento)
+    public FinalizadoraPagamento(string finalizadoraId, string formaPagamentoId, string sigla, string modalidade, StatusPagamento statusPagamento)
     {
-        Id = id;
+        Id =  Id = Guid.NewGuid().ToString().ToUpper();
         FinalizadoraId = finalizadoraId;
         FormaPagamentoId = formaPagamentoId;
         Sigla = sigla;
         Modalidade = modalidade;
-        Registro = registro;
+        Registro = DateTime.UtcNow.ToString();
         StatusPagamento = statusPagamento;
     }
 
