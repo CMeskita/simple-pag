@@ -1,5 +1,6 @@
 ﻿using simple_pag_Domain.Entity;
 using simple_pag_Domain.Interface;
+using simple_pag_Infra.Conection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,9 +11,17 @@ namespace simple_pag_Infra.Repositories
 {
     public class FinalizadoraRepositorio : IFinalizadoraRepositorio
     {
-        public Task<Finalizadora> AddFinalizadora(Finalizadora usuario)
+        private readonly Context _context;
+
+        public FinalizadoraRepositorio(Context context)
         {
-            throw new NotImplementedException();
+            _context = context;
+        }
+        public async Task AddFinalizadora(Finalizadora finalizadora)
+        {
+            await _context.Finalizadoras.AddAsync(finalizadora);
+            _context.SaveChanges();
+          
         }
 
         public bool ExisteFinalizadora(string sigla)

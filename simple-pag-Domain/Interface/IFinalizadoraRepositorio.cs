@@ -9,7 +9,7 @@ namespace simple_pag_Domain.Interface
 {
     public interface IFinalizadoraRepositorio
     {
-        Task<Finalizadora> AddFinalizadora(Finalizadora usuario);
+        Task AddFinalizadora(Finalizadora usuario);
         bool ExisteFinalizadora(string sigla);
         IList<Finalizadora> GetAllFinalizadoras();
         Task<Finalizadora> FindFinalizadoraById(string id);
