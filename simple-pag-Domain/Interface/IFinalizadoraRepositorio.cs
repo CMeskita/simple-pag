@@ -1,0 +1,24 @@
+﻿using simple_pag_Domain.Entity;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace simple_pag_Domain.Interface
+{
+    public interface IFinalizadoraRepositorio
+    {
+        Task<Finalizadora> AddFinalizadora(Finalizadora usuario);
+        bool ExisteFinalizadora(string sigla);
+        IList<Finalizadora> GetAllFinalizadoras();
+        Task<Finalizadora> FindFinalizadoraById(string id);
+        Task InativarFinalizadora(string id);
+        Task UpdateAsync(Finalizadora dados);
+        decimal TotalPagamentos();
+        int TotalQtdePagamentos();
+        decimal TotalPagamentosAvista();
+        decimal TotalPagamentosAPrazo();
+        //Task AddFinalizadoraPagamento(FinalizadoraPagamento dados);
+    }
+}

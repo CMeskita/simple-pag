@@ -1,12 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using simple_pag_Domain.Dto;
+using simple_pag_Application.Command;
 using simple_pag_Domain.Entity;
-using simple_pag_Infra.Data;
 
 namespace simple_pag.Controllers
 {
@@ -14,12 +8,12 @@ namespace simple_pag.Controllers
     [Route("Usuario")]
     public class UsuarioController : ControllerBase
     {
-        private readonly DataConnectionContext _context;
+        //private readonly DataConnectionContext _context;
 
-        public UsuarioController (DataConnectionContext context) {
+        //public UsuarioController (DataConnectionContext context) {
 
-            _context = context;
-        }
+        //    _context = context;
+        //}
 
        
         //EndPoint de criação de novos usuários
@@ -31,8 +25,8 @@ namespace simple_pag.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    _context.Usuario.Add(usuario);
-                    _context.SaveChanges();
+                    //_context.Usuario.Add(usuario);
+                    //_context.SaveChanges();
 
                     return Ok(new {message = "Dados inseridos com sucesso"});
                 }
@@ -55,7 +49,7 @@ namespace simple_pag.Controllers
 
             try
             {
-                 var existsResults = _context.Usuario.ToList();
+                var existsResults = "";// _context.Usuario.ToList();
 
                     if (existsResults != null)
                     {
@@ -81,11 +75,12 @@ namespace simple_pag.Controllers
 
             try
             {
-                var existsResults = _context.Usuario.FirstOrDefault(u => u.Email == email);
+                //var existsResults = _context.Usuario.FirstOrDefault(u => u.Email == email);
+                var existsResults = "";
 
                 if (existsResults != null)
                 {
-                    return Ok(existsResults.Id);
+                    //return Ok(existsResults.Id);
                 }
                 else
                 {
@@ -98,6 +93,7 @@ namespace simple_pag.Controllers
 
                  return Problem();
             }
+            return Ok();
 
         }
 
@@ -107,7 +103,8 @@ namespace simple_pag.Controllers
 
             try
             {
-                var existsResults = _context.Usuario.Find(id);
+                //var existsResults = _context.Usuario.Find(id);
+                var existsResults = "";
 
                 if (existsResults != null)
                 {
@@ -129,20 +126,21 @@ namespace simple_pag.Controllers
         //Endpoint de Atualizacao
         [HttpPut("Update/{id}")]
         [Consumes("application/json")]
-        public IActionResult Update(string id, [FromBody] DtoUsuario dtoUsuario) {
+        public IActionResult Update(string id, [FromBody] CommandUsuario dtoUsuario) {
 
             try
-            {   
-                 var existsResults = _context.DtoUsuarios.Find(id);
+            {
+                //var existsResults = _context.DtoUsuarios.Find(id);
 
+                var existsResults = "";
                 if (ModelState.IsValid && existsResults != null)
                 {   
-                    existsResults.Nome = dtoUsuario.Nome;
-                    existsResults.Email = dtoUsuario.Email;
-                    existsResults.ChavePrivada = dtoUsuario.ChavePrivada;
+                    //existsResults.Nome = dtoUsuario.Nome;
+                    //existsResults.Email = dtoUsuario.Email;
+                    //existsResults.ChavePrivada = dtoUsuario.ChavePrivada;
 
-                    _context.DtoUsuarios.Update(existsResults);
-                    _context.SaveChanges();
+                    //_context.DtoUsuarios.Update(existsResults);
+                    //_context.SaveChanges();
 
                     return Ok(new {message = "Dados atualizados com sucesso"});
                 } 
@@ -173,12 +171,12 @@ namespace simple_pag.Controllers
 
             try
             {
-               var existsResults = _context.Usuario.Find(id);
+                var existsResults = ""; /*_context.Usuario.Find(id);*/
 
                if (existsResults != null)
                {
-                    _context.Usuario.Remove(existsResults);
-                    _context.SaveChanges();
+                    //_context.Usuario.Remove(existsResults);
+                    //_context.SaveChanges();
 
                     return Ok(new {message = "Dados deletados com sucesso"});
                }

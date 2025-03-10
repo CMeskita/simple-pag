@@ -1,0 +1,27 @@
+﻿
+
+using Microsoft.EntityFrameworkCore;
+using simple_pag_Domain.Entity;
+
+namespace simple_pag_Infra.Conection
+{
+    public class Context:DbContext
+    {
+        public Context(DbContextOptions<Context> options) : base(options)
+        {
+
+        }
+        public DbSet<Finalizadora> Finalizadoras { get; set; }
+        public DbSet<FormaPagamento> FormaPagamentos { get; set; }
+        public DbSet<Usuario> Usuarios { get; set; }
+        protected override void OnModelCreating(ModelBuilder modelbuilder)
+        {
+            modelbuilder.Entity<Finalizadora>().HasKey(r => r.Id);
+            modelbuilder.Entity<FormaPagamento>().HasKey(m => m.Id);
+            modelbuilder.Entity<Usuario>().HasKey(s => s.Id);
+
+            base.OnModelCreating(modelbuilder);
+
+        }
+    }
+}
