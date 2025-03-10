@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace simple_pag_Domain.Entity
+namespace simple_pag_Infra.Repositories
 {
-    internal class Class1
+    public class UsuarioRepositorio
     {
+
     }
 }

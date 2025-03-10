@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace simple_pag_Domain.Interface
 {
-    internal interface Interface1
+    public interface IUnityOffWork
     {
+        void BeginTransaction();
+        void CommitTransaction();
+        void Rollback();
+
     }
 }
