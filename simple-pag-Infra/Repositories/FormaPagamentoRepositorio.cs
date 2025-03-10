@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace simple_pag_Infra.Repositories
 {
-    internal class Class1
+    public class FormaPagamentoRepositorio
     {
     }
 }

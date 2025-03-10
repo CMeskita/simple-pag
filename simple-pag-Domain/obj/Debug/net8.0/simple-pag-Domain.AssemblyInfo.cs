@@ -11,12 +11,12 @@
 using System;
 using System.Reflection;
 
-[assembly: System.Reflection.AssemblyCompanyAttribute("simple-pag-Application")]
+[assembly: System.Reflection.AssemblyCompanyAttribute("simple-pag-Domain")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+793d7f8a0edab2a75fd2287afb5e436e6186ae83")]
-[assembly: System.Reflection.AssemblyProductAttribute("simple-pag-Application")]
-[assembly: System.Reflection.AssemblyTitleAttribute("simple-pag-Application")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+31cd15f180f24831674c6933e436fad143633ab8")]
+[assembly: System.Reflection.AssemblyProductAttribute("simple-pag-Domain")]
+[assembly: System.Reflection.AssemblyTitleAttribute("simple-pag-Domain")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
 
 // Gerado pela classe WriteCodeFragment do MSBuild.

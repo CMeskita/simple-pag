@@ -1,23 +1,113 @@
 [
   {
-    "ContainingType": "simple_pag.Controllers.WeatherForecastController",
+    "ContainingType": "simple_pag.Controllers.FinalizadoraController",
+    "Method": "Create",
+    "RelativePath": "api/v1/Finalizadora",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "simple_pag_Application.Command.CommandFinalizadora",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "simple_pag.Controllers.UsuarioController",
+    "Method": "Create",
+    "RelativePath": "Usuario/Create",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "usuario",
+        "Type": "simple_pag_Domain.Entity.Usuario",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "simple_pag.Controllers.UsuarioController",
+    "Method": "Delete",
+    "RelativePath": "Usuario/Delete/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "simple_pag.Controllers.UsuarioController",
     "Method": "Get",
-    "RelativePath": "WeatherForecast",
+    "RelativePath": "Usuario/Get/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "simple_pag.Controllers.UsuarioController",
+    "Method": "GetAll",
+    "RelativePath": "Usuario/GetAll",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [],
-    "ReturnTypes": [
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "simple_pag.Controllers.UsuarioController",
+    "Method": "GetId",
+    "RelativePath": "Usuario/GetId",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[simple_pag.WeatherForecast, simple-pag, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
+        "Name": "email",
+        "Type": "System.String",
+        "IsRequired": true
       }
     ],
-    "EndpointName": "GetWeatherForecast"
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "simple_pag.Controllers.UsuarioController",
+    "Method": "Update",
+    "RelativePath": "Usuario/Update/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "dtoUsuario",
+        "Type": "simple_pag_Application.Command.CommandUsuario",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
   }
 ]
