@@ -11,7 +11,7 @@ namespace simple_pag_Domain.Interface
     {
         Task AddFinalizadora(Finalizadora usuario);
         bool ExisteFinalizadora(string sigla);
-        IList<Finalizadora> GetAllFinalizadoras();
+        Task<IList<Finalizadora>> GetAllFinalizadoras();
         Task<Finalizadora> FindFinalizadoraById(string id);
         Task InativarFinalizadora(string id);
         Task UpdateAsync(Finalizadora dados);

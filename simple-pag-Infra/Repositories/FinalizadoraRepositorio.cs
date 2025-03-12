@@ -1,11 +1,8 @@
-﻿using simple_pag_Domain.Entity;
+﻿using Microsoft.EntityFrameworkCore;
+using simple_pag_Domain.Entity;
 using simple_pag_Domain.Interface;
 using simple_pag_Infra.Conection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace simple_pag_Infra.Repositories
 {
@@ -29,44 +26,44 @@ namespace simple_pag_Infra.Repositories
             throw new NotImplementedException();
         }
 
-        public Task<Finalizadora> FindFinalizadoraById(string id)
+        public async Task<Finalizadora> FindFinalizadoraById(string id)
         {
-            throw new NotImplementedException();
+            return await _context.Finalizadoras.FindAsync(id);
         }
 
-        public IList<Finalizadora> GetAllFinalizadoras()
+        public async Task<IList<Finalizadora>> GetAllFinalizadoras()
         {
-            throw new NotImplementedException();
+            return await _context.Finalizadoras.ToListAsync();
         }
 
         public Task InativarFinalizadora(string id)
         {
             throw new NotImplementedException();
         }
-
         public decimal TotalPagamentos()
         {
-            throw new NotImplementedException();
+            decimal result = _context.Finalizadoras.Sum(x => x.Valor);
+            return result;
         }
-
-        public decimal TotalPagamentosAPrazo()
-        {
-            throw new NotImplementedException();
-        }
-
-        public decimal TotalPagamentosAvista()
-        {
-            throw new NotImplementedException();
-        }
-
         public int TotalQtdePagamentos()
         {
-            throw new NotImplementedException();
+            var result = _context.Finalizadoras.Count();
+            return result;
         }
-
-        public Task UpdateAsync(Finalizadora dados)
+        public decimal TotalPagamentosAvista()
         {
-            throw new NotImplementedException();
+            var result = _context.Finalizadoras.Where(x => x.QtdParcelas < 1).Sum(x => x.Valor);
+            return result;
+        }
+        public decimal TotalPagamentosAPrazo()
+        {
+            var result = _context.Finalizadoras.Where(x => x.QtdParcelas >= 1).Sum(x => x.Valor);
+            return result;
+        }
+        public async Task UpdateAsync(Finalizadora dados)
+        {
+            _context.Finalizadoras.Update(dados);
+            await _context.SaveChangesAsync();
         }
     }
 }
