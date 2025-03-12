@@ -15,6 +15,16 @@ namespace simple_pag_Domain.Entity
             FormaPagamento = formaPagamento;
         }
 
+        public Finalizadora(string id, decimal valor, int qtdParcelas, string modalidade, string vencimento, string formaPagamento)
+        {
+            Id = id;
+            Valor = valor;
+            QtdParcelas = qtdParcelas;
+            Modalidade = modalidade;
+            Vencimento = vencimento;
+            FormaPagamento = formaPagamento;
+        }
+        
         public string Id { get; protected set; }
         public decimal Valor { get; protected set; }
         public int QtdParcelas { get; protected set; }
