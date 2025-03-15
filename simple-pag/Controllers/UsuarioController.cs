@@ -102,6 +102,7 @@ namespace simple_pag.Controllers
 
         }
 
+
         //Endpoint que checa se usuário existe dentro da base de dados
         [HttpGet("ExisteUsuario/[request]")]
         public async Task<IActionResult> ExisteUsuario ([FromQuery] CommandUsuario request) {//<= Id NÂO autoincremental!
@@ -110,7 +111,8 @@ namespace simple_pag.Controllers
             {
                 var existsResults = await _mediator.Send(request);
 
-                int statusCodeInReturn = existsResults.StatusCode;
+                var response = existsResults as Response;
+                int statusCodeInReturn = response?.StatusCode ?? StatusCodes.Status500InternalServerError;
 
                 if (statusCodeInReturn == 200)
                 {
@@ -126,10 +128,11 @@ namespace simple_pag.Controllers
             }
             catch (System.Exception ex)
             {
-                 return BadRequest(new Response {Message = ex.Message, StatusCode = StatusCodes.Status500InternalServerError});
+                Console.WriteLine(ex);
+
+                return BadRequest(new Response {Message = ex.Message, StatusCode = StatusCodes.Status500InternalServerError});
             }
         }
-
         //Endpoint de Exclusão Lógica
         [HttpPut("InativarUsuario")]
         [Consumes("application/json")]
@@ -138,8 +141,8 @@ namespace simple_pag.Controllers
             try
             {   
                 var existsResults = await _mediator.Send(request);
-                int statusCodeInReturn = existsResults.StatusCode;
-                string message = existsResults.Message;
+                int statusCodeInReturn = (existsResults as Response)?.StatusCode ?? StatusCodes.Status500InternalServerError;
+                string message = (existsResults as Response)?.Message;
 
                 if (statusCodeInReturn == 200)
                 {
@@ -164,8 +167,9 @@ namespace simple_pag.Controllers
             try
             {
                 var resultados = await _mediator.Send(request);
-                int statusCodeInReturn = resultados.StatusCode;
-                string message = resultados.Message;
+                var response = resultados as Response;
+                int statusCodeInReturn = response.StatusCode;
+                string message = (resultados as Response)?.Message;
 
                 if (statusCodeInReturn == 200)
                 {

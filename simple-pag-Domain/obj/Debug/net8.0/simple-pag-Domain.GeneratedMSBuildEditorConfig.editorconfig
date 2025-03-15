@@ -16,6 +16,6 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = simple_pag_Domain
-build_property.ProjectDir = D:\Repositorios\simple-pag\simple-pag-Domain\
+build_property.ProjectDir = /home/rangel/dotnet/web/apis/projetos/microSistemPagamento/simple-pag/simple-pag-Domain/
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
