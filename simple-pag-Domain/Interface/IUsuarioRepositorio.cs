@@ -11,8 +11,8 @@ namespace simple_pag_Domain.Interface
     {
         Task AddUsuario(Usuario usuario);
         bool ExisteUsuario(string email);
-        IList<Usuario> GetAllUsuarios();
-        Task<Usuario> FindUsuarioById(string id);
+        Task<IList<Usuario>> GetAllUsuarios();
+        Task<Usuario?> FindUsuarioById(string id);
         Task InativarUsuario(string id);
         Task UpdateAsync(Usuario dados);
     }
