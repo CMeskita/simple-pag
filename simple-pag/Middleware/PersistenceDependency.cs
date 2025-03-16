@@ -30,13 +30,21 @@ namespace simple_pag.Middleware
             services.AddScoped<IUsuarioRepositorio, UsuarioRepositorio>();
 
             services.AddScoped<IFinalizadoraRepositorio,FinalizadoraRepositorio>();
+<<<<<<< Updated upstream
           
             
+=======
+            services.AddScoped<IFormaPagamentoRepositorio, FormaPagamentoRepositorio>();
+>>>>>>> Stashed changes
 
 
 
             //Patterns
+<<<<<<< Updated upstream
             services.AddTransient<IUnityOffWork, UnityOffWork>();
+=======
+            services.AddScoped<IUnityOffWork, UnityOffWork>();
+>>>>>>> Stashed changes
         }
     }
 }
