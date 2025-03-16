@@ -1,5 +1,8 @@
+using Autofac.Core;
+using Microsoft.EntityFrameworkCore.Storage;
 using simple_pag.Middleware;
 using simple_pag.Util;
+using simple_pag_Infra.Conection;
 
 var builder = WebApplication.CreateBuilder(args);
 ConfigurationManager configuration = builder.Configuration;
@@ -14,6 +17,11 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddApplication();
 builder.Services.AddPersistence(configuration);
+builder.Services.AddScoped<IDbContextTransaction>(provider =>
+{
+    var context = provider.GetService<Context>();
+    return context.Database.BeginTransaction();
+});
 
 var app = builder.Build();
 

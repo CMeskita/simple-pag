@@ -1,5 +1,7 @@
 ﻿
+
 using simple_pag_Application.Handler.Finalizadoras;
+using simple_pag_Application.Handler.Usuarios;
 
 namespace simple_pag.Middleware
 {
@@ -11,7 +13,9 @@ namespace simple_pag.Middleware
         {
 
             services.AddMediatR(mdt => mdt.RegisterServicesFromAssemblyContaining<CreateFinalizadorHandler>());
-    
+            services.AddMediatR(mdt => mdt.RegisterServicesFromAssemblyContaining<CreateUsuarioHandler>());
+
+
 
 
         }

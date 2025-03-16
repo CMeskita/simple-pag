@@ -1,3 +1,4 @@
+
 namespace simple_pag_Test
 {
     using System;
@@ -14,9 +15,9 @@ namespace simple_pag_Test
                 // Arrange
                 decimal valor = 100.50m;
                 int qtdParcelas = 5;
-                string modalidade = "CrÈdito";
+                string modalidade = "Cr√©dito";
                 string vencimento = "2023-12-31";
-                string formaPagamento = "Cart„o";
+                string formaPagamento = "Cart√£o";
 
                 // Act
                 var finalizadora = new Finalizadora(valor, qtdParcelas, modalidade, vencimento, formaPagamento);
@@ -37,7 +38,7 @@ namespace simple_pag_Test
                 string id = Guid.NewGuid().ToString().ToUpper();
                 decimal valor = 200.75m;
                 int qtdParcelas = 10;
-                string modalidade = "DÈbito";
+                string modalidade = "D√©bito";
                 string vencimento = "2024-01-15";
                 string formaPagamento = "Boleto";
 

@@ -14,12 +14,21 @@ namespace simple_pag_Domain.Entity
             Status = true;
         }
 
+        public Usuario(string id, string nome, string email, string chavePrivada)
+        {
+            Id = id;
+            Nome = nome;
+            Email = email;
+            ChavePrivada = chavePrivada;
+            Registro = DateTime.UtcNow;
+            Status = true;
+        }
+
         public string Id { get; protected set; }
         public string Nome { get; protected set; }
         public string Email { get; protected set; }
         public string ChavePrivada { get; protected set; }
         public DateTime Registro { get; protected set; }
         public bool Status { get; protected set; }
-
     }
 }
