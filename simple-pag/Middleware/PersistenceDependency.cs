@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using simple_pag.Util;
 using simple_pag_Domain.Interface;
 using simple_pag_Infra.Conection;
 using simple_pag_Infra.Repositories;
@@ -28,12 +27,16 @@ namespace simple_pag.Middleware
             });
 
             //Repositorys
+            services.AddScoped<IUsuarioRepositorio, UsuarioRepositorio>();
+
             services.AddScoped<IFinalizadoraRepositorio,FinalizadoraRepositorio>();
+          
+            
 
 
 
             //Patterns
-           // services.AddScoped<IUnityofWork, UnityofWork>();
+            services.AddTransient<IUnityOffWork, UnityOffWork>();
         }
     }
 }
