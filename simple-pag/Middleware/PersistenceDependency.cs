@@ -41,8 +41,8 @@ namespace simple_pag.Middleware
             });
 
             ////Mongo
-            ///
 
+            services.AddScoped<IFormaPagamentoRepositorio, FormaPagamentoRepositorio>()
             services.Configure<MongoDbSettings>(options =>
             {
                 options.ConnectionString = _bancomongo ?? throw new InvalidOperationException("MONGO_CONNECTION_STRING não configurada.");
@@ -60,6 +60,7 @@ namespace simple_pag.Middleware
                 return client.GetDatabase(settings.DatabaseName);
             });
 
+
             //Repositorys
 
             services.AddScoped<IFinalizadoraRepositorio, FinalizadoraRepositorio>();
@@ -67,6 +68,7 @@ namespace simple_pag.Middleware
             services.AddScoped<ILogInformacaoRepositorio, LogInformacaoRepositorio>();
 
             //Patterns
+
             services.AddTransient<IUnityOffWork, UnityOffWork>();
         }
     }
