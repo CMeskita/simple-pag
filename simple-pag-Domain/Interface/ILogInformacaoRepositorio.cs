@@ -1,0 +1,16 @@
+﻿
+
+using simple_pag_Domain.Models;
+
+namespace simple_pag_Domain.Interface
+{ 
+    public interface ILogInformacaoRepositorio
+    {
+        //Task AddLogInformation(LogInformation logInformation);
+        Task<IEnumerable<LogInformation>> GetAllAsync();
+        Task<LogInformation> GetByIdAsync(string id);
+        Task AddAsync(LogInformation entity);
+        Task UpdateAsync(string id, LogInformation entity);
+        Task DeleteAsync(string id);
+    }
+}

@@ -1,5 +1,4 @@
 ﻿
-
 using Microsoft.EntityFrameworkCore;
 using simple_pag_Domain.Entity;
 
