@@ -1,10 +1,7 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using MediatR;
 using simple_pag_Application.Command;
 using simple_pag_Application.Repsonse;
-using Amazon.Runtime.Internal;
-using static simple_pag_Application.Command.CommandFormaPagamento;
 
 namespace simple_pag.Controllers
 {
