@@ -26,4 +26,8 @@ namespace simple_pag_Application.Command
     {
         public string Id { get; set; }
     }
+    public class CommandGetAllFormaPagamento : IRequest<FormaPagamentoResponse>
+    {
+
+    }
 }

@@ -45,5 +45,6 @@ namespace simple_pag_Infra.Repositories
             _context.FormaPagamentos.Update(dados);
             await _context.SaveChangesAsync();
         }
+
     }
 }

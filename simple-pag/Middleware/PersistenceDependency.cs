@@ -42,7 +42,7 @@ namespace simple_pag.Middleware
 
             ////Mongo
 
-            services.AddScoped<IFormaPagamentoRepositorio, FormaPagamentoRepositorio>()
+            
             services.Configure<MongoDbSettings>(options =>
             {
                 options.ConnectionString = _bancomongo ?? throw new InvalidOperationException("MONGO_CONNECTION_STRING não configurada.");
@@ -66,6 +66,7 @@ namespace simple_pag.Middleware
             services.AddScoped<IFinalizadoraRepositorio, FinalizadoraRepositorio>();
             services.AddScoped<IUsuarioRepositorio, UsuarioRepositorio>();
             services.AddScoped<ILogInformacaoRepositorio, LogInformacaoRepositorio>();
+            services.AddScoped<IFormaPagamentoRepositorio, FormaPagamentoRepositorio>();
 
             //Patterns
 

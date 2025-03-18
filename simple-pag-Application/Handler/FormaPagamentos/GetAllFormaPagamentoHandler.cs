@@ -1,18 +1,16 @@
-﻿using Amazon.SecurityToken.Model;
-using MediatR;
+﻿using MediatR;
 using simple_pag_Application.Command;
 using simple_pag_Application.Repsonse;
 using simple_pag_Domain.Entity;
-using simple_pag_Infra.Repositories;
-using System;
+using simple_pag_Domain.Interface;
 
 namespace simple_pag_Application.Handler.FormaPagamentos
 {
     public class GetAllFormaPagamentoHandler : IRequestHandler<CommandGetAllFormaPagamento, FormaPagamentoResponse>
     {
-        private readonly FormaPagamentoRepositorio _formaPagamentoRepositorio;
+        private readonly IFormaPagamentoRepositorio _formaPagamentoRepositorio;
 
-        public GetAllFormaPagamentoHandler(FormaPagamentoRepositorio formaPagamentoRepositorio)
+        public GetAllFormaPagamentoHandler(IFormaPagamentoRepositorio formaPagamentoRepositorio)
         {
             _formaPagamentoRepositorio = formaPagamentoRepositorio;
         }
