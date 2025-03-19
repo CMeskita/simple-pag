@@ -10,7 +10,7 @@ namespace simple_pag_Test
         public class FinalizadoraTests
         {
             [Fact]
-            public void Finalizadora_Constructor_ShouldInitializeProperties()
+            public void Finalizadora_Alterar()
             {
                 // Arrange
                 decimal valor = 100.50m;
@@ -32,7 +32,7 @@ namespace simple_pag_Test
             }
 
             [Fact]
-            public void Finalizadora_ConstructorWithId_ShouldInitializeProperties()
+            public void Finalizadora_Cadastrar()
             {
                 // Arrange
                 string id = Guid.NewGuid().ToString().ToUpper();
