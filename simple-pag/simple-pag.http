@@ -1,6 +1,0 @@
-@simple_pag_HostAddress = http://localhost:5263
-
-GET {{simple_pag_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###
