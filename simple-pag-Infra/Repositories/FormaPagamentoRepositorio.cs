@@ -42,6 +42,7 @@ namespace simple_pag_Infra.Repositories
 
         public async Task UpdateAsync(FormaPagamento dados)
         {
+            _context.FormaPagamentos.Attach(dados).Property(x => x.Registro).IsModified = false;
             _context.FormaPagamentos.Update(dados);
             await _context.SaveChangesAsync();
         }

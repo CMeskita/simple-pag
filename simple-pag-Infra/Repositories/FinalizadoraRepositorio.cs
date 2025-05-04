@@ -2,6 +2,7 @@
 using simple_pag_Domain.Entity;
 using simple_pag_Domain.Interface;
 using simple_pag_Infra.Conection;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 
 namespace simple_pag_Infra.Repositories
@@ -36,6 +37,16 @@ namespace simple_pag_Infra.Repositories
             return await _context.Finalizadoras.ToListAsync();
         }
 
+        public async Task<IList<Finalizadora>> GetFinalizadorasPaginadas(int pageNumber, int pageSize)
+        {
+            return await _context.Finalizadoras
+                .OrderBy(x => x.Registro) // Ordena por Valor
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize)
+                .ToListAsync();
+        }
+
+
         public Task InativarFinalizadora(string id)
         {
             throw new NotImplementedException();
@@ -62,6 +73,7 @@ namespace simple_pag_Infra.Repositories
         }
         public async Task UpdateAsync(Finalizadora dados)
         {
+            _context.Finalizadoras.Attach(dados).Property(x => x.Registro).IsModified = false;
             _context.Finalizadoras.Update(dados);
             await _context.SaveChangesAsync();
         }

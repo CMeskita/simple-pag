@@ -19,7 +19,7 @@ namespace simple_pag_Application.Handler.Usuarios
         {
             try
             {
-                IEnumerable<Usuario> finalizadora = await _repositorio.GetAllUsuarios();
+                IEnumerable<Usuario> finalizadora = await _repositorio.GetUsuariosPaginadas(request.pageNumber,request.pageSize);
                 UsuarioResponse response = new UsuarioResponse
                 {
                     Dados = finalizadora.Select(fin => new UsuarioResponseItem

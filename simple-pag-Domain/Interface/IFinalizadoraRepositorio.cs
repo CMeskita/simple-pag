@@ -16,6 +16,7 @@ namespace simple_pag_Domain.Interface
         int TotalQtdePagamentos();
         decimal TotalPagamentosAvista();
         decimal TotalPagamentosAPrazo();
+        Task<IList<Finalizadora>> GetFinalizadorasPaginadas(int pageNumber, int pageSize);
         //Task AddFinalizadoraPagamento(FinalizadoraPagamento dados);
     }
 }

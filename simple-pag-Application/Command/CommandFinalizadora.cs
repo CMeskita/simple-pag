@@ -17,6 +17,8 @@ namespace simple_pag_Application.Command
     }
     public class CommandGetAllFinalizadora : IRequest<FinalizadoraResponse>
     {
+        public int pageNumber { get; set; }//quantidade de registros por página
+        public int pageSize { get; set; }//quantidade de páginas
     }
     public class CommandGetIdFinalizadora : IRequest<FinalizadoraResponseItem>
     {

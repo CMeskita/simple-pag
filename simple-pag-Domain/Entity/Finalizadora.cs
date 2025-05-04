@@ -1,7 +1,4 @@
-﻿
-using System.ComponentModel.DataAnnotations;
-
-namespace simple_pag_Domain.Entity
+﻿namespace simple_pag_Domain.Entity
 {
     public class Finalizadora
     {
@@ -13,6 +10,7 @@ namespace simple_pag_Domain.Entity
             Modalidade = modalidade.ToUpper();
             Vencimento = vencimento.ToString();
             FormaPagamento = formaPagamento;
+            Registro = DateTime.UtcNow.ToString("dd-MM-yyyy HH:mm:ss");
         }
 
         public Finalizadora(string id, decimal valor, int qtdParcelas, string modalidade, string vencimento, string formaPagamento)
@@ -24,6 +22,7 @@ namespace simple_pag_Domain.Entity
             Vencimento = vencimento;
             FormaPagamento = formaPagamento;
         }
+    
         
         public string Id { get; protected set; }
         public decimal Valor { get; protected set; }
@@ -31,6 +30,7 @@ namespace simple_pag_Domain.Entity
         public string Modalidade { get; protected set; }
         public string Vencimento { get; protected set; }
         public string FormaPagamento { get; protected set; }
+        public string Registro { get; protected set; }
     }
 
 }

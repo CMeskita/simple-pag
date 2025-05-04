@@ -1,12 +1,11 @@
 ﻿using MediatR;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using simple_pag_Application.Command;
 using simple_pag_Application.Repsonse;
 
 namespace simple_pag.Controllers
 {
-    [Route("api/v1[controller]")]
+    [Route("api/v1/[controller]")]
     [ApiController]
     public class UsuarioController : ControllerBase
     {
@@ -83,7 +82,21 @@ namespace simple_pag.Controllers
                 return BadRequest(new Response { StatusCode = StatusCodes.Status400BadRequest, Message = ex.Message });
             }
         }
+        [HttpPut]
+        [Route("inativar")]
+        public async Task<IActionResult> UpdateStatusUsuario([FromBody] CommandInativarUsuario request)
+        {
+            try
+            {
+                var response = await _mediator.Send(request);
+                return StatusCode(response.StatusCode, response);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new Response { StatusCode = StatusCodes.Status400BadRequest, Message = ex.Message });
+            }
 
-    }
+        }
+        }
 }
 

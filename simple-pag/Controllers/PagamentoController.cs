@@ -2,21 +2,23 @@
 using MediatR;
 using simple_pag_Application.Command;
 using simple_pag_Application.Repsonse;
+using Microsoft.AspNetCore.Authorization;
 
 namespace simple_pag.Controllers
 {
     [Route("api/v1/[controller]")]
     [ApiController]
-    public class FormaPagamentoController : ControllerBase
+    public class PagamentoController : ControllerBase
     {
         private readonly IMediator _mediator;
 
-        public FormaPagamentoController(IMediator mediator)
+        public PagamentoController(IMediator mediator)
         {
             _mediator = mediator;
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> Create([FromBody] CommandFormaPagamento request)
         {
             try
@@ -32,6 +34,7 @@ namespace simple_pag.Controllers
 
         [HttpGet]
         [Route("todos")]
+        [AllowAnonymous]
         public async Task<IActionResult> GetAllFormaPagamento([FromQuery] CommandGetAllFormaPagamento request)
         {
             try

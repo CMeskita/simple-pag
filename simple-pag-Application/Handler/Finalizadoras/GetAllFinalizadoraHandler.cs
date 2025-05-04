@@ -19,7 +19,7 @@ namespace simple_pag_Application.Handler.Finalizadoras
         {
             try
             {
-                IEnumerable<Finalizadora> finalizadora =await _finalizadoraRepositorio.GetAllFinalizadoras();
+                IEnumerable<Finalizadora> finalizadora = await _finalizadoraRepositorio.GetFinalizadorasPaginadas(request.pageNumber,request.pageSize);
                 FinalizadoraResponse response = new FinalizadoraResponse
                 {
                     Dados = finalizadora.Select(fin => new FinalizadoraResponseItem

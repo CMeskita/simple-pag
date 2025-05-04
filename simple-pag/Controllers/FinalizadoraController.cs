@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using simple_pag_Application.Command;
 using simple_pag_Application.Repsonse;
@@ -16,6 +17,7 @@ namespace simple_pag.Controllers
             _mediator = mediator;
         }
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> CreateFinalizadora([FromBody] CommandFinalizadora request)
         {
             try
@@ -30,6 +32,7 @@ namespace simple_pag.Controllers
         }
         [HttpGet]
         [Route("todos")]
+        [Authorize]
         public async Task<IActionResult> GetAllFinalizadora([FromQuery] CommandGetAllFinalizadora request)
         {
             try
@@ -44,6 +47,7 @@ namespace simple_pag.Controllers
         }
         [HttpGet]
         [Route("id")]
+        [Authorize]
         public async Task<IActionResult> GetIdFinalizadora([FromQuery] CommandGetIdFinalizadora request)
         {
             try
@@ -61,7 +65,7 @@ namespace simple_pag.Controllers
             }
         }
         [HttpPut]
-   
+        [Authorize]
         public async Task<IActionResult> UpdateFinalizadora([FromBody] CommandUpdateFinalizadora request)
         {
             try

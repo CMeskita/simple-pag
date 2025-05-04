@@ -33,7 +33,15 @@ namespace simple_pag_Infra.Repositories
         {
             return await _context.Usuarios.ToListAsync();
         }
-
+        public async Task<IList<Usuario>> GetUsuariosPaginadas(int pageNumber, int pageSize)
+        {
+            return await _context.Usuarios
+                .Where(x => x.Status == true)
+                .OrderBy(x => x.Registro) // Ordena por Valor
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize)
+                .ToListAsync();
+        }
         public async Task UpdateAsync(Usuario dados)
         {
             _context.Usuarios.Update(dados);

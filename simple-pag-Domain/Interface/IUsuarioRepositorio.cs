@@ -15,5 +15,6 @@ namespace simple_pag_Domain.Interface
         Task<Usuario?> FindUsuarioById(string id);
       
         Task UpdateAsync(Usuario dados);
+        Task<IList<Usuario>> GetUsuariosPaginadas(int pageNumber, int pageSize);
     }
 }

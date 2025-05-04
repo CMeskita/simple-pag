@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using simple_pag_Application.ServiceOpenai;
 using simple_pag_Domain.Interface;
@@ -18,6 +19,7 @@ namespace simple_pag.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public async Task<IActionResult> PergunteAoChatGpy(string pergunta)
         {
             var response = await _chatGPTServiceApi.ObterRespotaChatGpt(pergunta);

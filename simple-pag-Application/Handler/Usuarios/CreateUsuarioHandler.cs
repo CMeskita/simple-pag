@@ -24,8 +24,9 @@ namespace simple_pag_Application.Handler.Usuarios
             {
                 _unityOffWork.BeginTransaction();
 
+                
                 Usuario dados = request;
-
+                dados.HashChavePrimaria(request.ChavePrivada);
                 await _repositorio.AddUsuario(dados);
 
                 _unityOffWork.CommitTransaction();

@@ -1,8 +1,7 @@
-using Autofac.Core;
-using Microsoft.EntityFrameworkCore.Storage;
 using simple_pag.Middleware;
 using simple_pag.Util;
-using simple_pag_Infra.Conection;
+
+
 
 var builder = WebApplication.CreateBuilder(args);
 ConfigurationManager configuration = builder.Configuration;
@@ -15,6 +14,8 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerMiddleware();
+builder.Services.AddJwtMiddleware();
 builder.Services.AddApplication();
 builder.Services.AddPersistence(configuration);
 
@@ -22,18 +23,24 @@ builder.Services.AddPersistence(configuration);
 
 var app = builder.Build();
 
+//CORS
+//builder.Services.AddCors(options =>
+//{
+//    options.AddPolicy("Open", policy => policy.WithOrigins().AllowAnyHeader().AllowAnyMethod());
+//});
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "API-Pagamentos v1"));
 }
+app.UseCors("Open");
 
 app.UseHttpsRedirection();
-
 app.UseAuthorization();
-
+app.UseAuthentication();
 app.MapControllers();
 
 app.Run();

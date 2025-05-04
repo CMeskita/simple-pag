@@ -9,7 +9,7 @@
         public string Id { get;  set; }
         public string Nome { get;  set; }
         public string Email { get;  set; }
-        public DateTime Registro { get;  set; }
+        public string Registro { get;  set; }
         public bool Status { get;  set; }
     }
 }
