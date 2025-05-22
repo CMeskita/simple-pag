@@ -11,10 +11,11 @@ namespace simple_pag.Controllers
     public class FinalizadoraController : ControllerBase
     {
         private readonly IMediator _mediator;
-
+        CommandAuthorization _commandAuthorization;
         public FinalizadoraController(IMediator mediator)
         {
             _mediator = mediator;
+            _commandAuthorization = new CommandAuthorization();
         }
         [HttpPost]
         [Authorize]
@@ -22,6 +23,20 @@ namespace simple_pag.Controllers
         {
             try
             {
+                _commandAuthorization.authorizationHeader = HttpContext.Request.Headers.Authorization.ToString();
+
+                if (string.IsNullOrEmpty(_commandAuthorization.authorizationHeader))
+                {
+                    return StatusCode(401, "Cabeçalho de autorização ausente ou inválido");
+                }
+
+                var responses = await _mediator.Send(_commandAuthorization);
+
+                if (responses.IsAuthorized != true)
+                {
+                    return StatusCode(401, "Não Autorizado o acesso");
+                }
+
                 var response = await _mediator.Send(request);
                 return StatusCode(201, response);
             }
@@ -78,7 +93,8 @@ namespace simple_pag.Controllers
                 return BadRequest(new Response { StatusCode = StatusCodes.Status400BadRequest, Message = ex.Message });
             }
         }
-        
+      
+
     }
 
   

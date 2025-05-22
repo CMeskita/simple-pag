@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.Extensions.Options;
 using MongoDB.Driver;
+using simple_pag_Application.ServiceJWT;
 using simple_pag_Domain.Interface;
 using simple_pag_Domain.Models;
 using simple_pag_Infra.Conection;
@@ -67,6 +68,7 @@ namespace simple_pag.Middleware
             services.AddScoped<IUsuarioRepositorio, UsuarioRepositorio>();
             services.AddScoped<ILogInformacaoRepositorio, LogInformacaoRepositorio>();
             services.AddScoped<IFormaPagamentoRepositorio, FormaPagamentoRepositorio>();
+            services.AddScoped<ITokenService, TokenService>();
 
             //Patterns
 

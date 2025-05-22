@@ -47,7 +47,12 @@ namespace simple_pag_Infra.Repositories
             _context.Usuarios.Update(dados);
             await _context.SaveChangesAsync();
         }
+        public async Task<Usuario?> GetUsuariobyEmail(string email)
+        {
+            var result = await _context.Usuarios.FirstOrDefaultAsync(x => x.Email == email);
+            return result;
+        }
 
-      
+
     }
 }

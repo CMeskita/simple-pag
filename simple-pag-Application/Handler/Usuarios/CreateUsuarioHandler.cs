@@ -24,7 +24,16 @@ namespace simple_pag_Application.Handler.Usuarios
             {
                 _unityOffWork.BeginTransaction();
 
-                
+                Usuario? usuario =  _repositorio.GetUsuariobyEmail(request.Email).Result; 
+                if (usuario != null)
+                {
+                    return new Response
+                    {
+                        Message = "Usuário já cadastrado",
+                        StatusCode = 409
+                    };
+                }
+
                 Usuario dados = request;
                 dados.HashChavePrimaria(request.ChavePrivada);
                 await _repositorio.AddUsuario(dados);

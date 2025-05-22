@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using simple_pag_Application.Command;
 using simple_pag_Application.Repsonse;
+using simple_pag_Domain.Models;
+
 
 namespace simple_pag.Controllers
 {
@@ -16,18 +18,18 @@ namespace simple_pag.Controllers
 
             _mediator = mediator;
         }
-        
+
         [HttpPost]
         public async Task<IActionResult> CreateUsuario([FromBody] CommandUsuario request)
         {
 
             try
             {
-                
-                    var response = await _mediator.Send(request);
 
-                    return StatusCode(201, response);
-               
+                var response = await _mediator.Send(request);
+
+                return StatusCode(201, response);
+
             }
             catch (Exception ex)
             {
@@ -97,6 +99,43 @@ namespace simple_pag.Controllers
             }
 
         }
+        [HttpPost]
+        [Route("gera-cnpj-alpha")]
+        public async Task<IActionResult> CnpjAlpha()
+        {
+            try
+            {
+                var response = CNPJGenerator.GerarCNPJValidoAlphaNumeric();
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new Response { StatusCode = StatusCodes.Status400BadRequest, Message = ex.Message });
+            }
         }
+        [HttpPost]
+        [Route("valida-cnpj-alpha")]
+        public async Task<IActionResult> ValidaCnpjAlpha(string cnpj)
+        {
+            try
+            {
+               //var response = CnpjAlphaValidator.IsValidCnpj(cnpj);
+                var response = CNPJ.IsValid(cnpj);
+                if (response)
+                {
+                    return Ok(new Response { StatusCode = StatusCodes.Status200OK, Message = "CNPJ Válido" });
+                }
+                else
+                {
+                    return BadRequest(new Response { StatusCode = StatusCodes.Status400BadRequest, Message = "CNPJ Inválido" });
+                }
+               
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new Response { StatusCode = StatusCodes.Status400BadRequest, Message = ex.Message });
+            }
+        }
+    }
 }
 
