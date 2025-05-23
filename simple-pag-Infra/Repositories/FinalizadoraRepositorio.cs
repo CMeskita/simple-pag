@@ -2,8 +2,6 @@
 using simple_pag_Domain.Entity;
 using simple_pag_Domain.Interface;
 using simple_pag_Infra.Conection;
-using static System.Runtime.InteropServices.JavaScript.JSType;
-
 
 namespace simple_pag_Infra.Repositories
 {
@@ -21,15 +19,15 @@ namespace simple_pag_Infra.Repositories
             _context.SaveChanges();
           
         }
-
-        public bool ExisteFinalizadora(string sigla)
-        {
-            throw new NotImplementedException();
-        }
-
         public async Task<Finalizadora> FindFinalizadoraById(string id)
         {
-            return await _context.Finalizadoras.FindAsync(id);
+            var data = await _context.Finalizadoras.FindAsync(id);
+            if (data == null)
+            {
+                data = new Finalizadora();
+                data.Notification.Add("Registro não encontrado");
+            }
+            return data;
         }
 
         public async Task<IList<Finalizadora>> GetAllFinalizadoras()
@@ -46,11 +44,6 @@ namespace simple_pag_Infra.Repositories
                 .ToListAsync();
         }
 
-
-        public Task InativarFinalizadora(string id)
-        {
-            throw new NotImplementedException();
-        }
         public decimal TotalPagamentos()
         {
             decimal result = _context.Finalizadoras.Sum(x => x.Valor);
@@ -73,8 +66,8 @@ namespace simple_pag_Infra.Repositories
         }
         public async Task UpdateAsync(Finalizadora dados)
         {
-            _context.Finalizadoras.Attach(dados).Property(x => x.Registro).IsModified = false;
             _context.Finalizadoras.Update(dados);
+            _context.Entry(dados).Property(x => x.Registro).IsModified = false;           
             await _context.SaveChangesAsync();
         }
     }

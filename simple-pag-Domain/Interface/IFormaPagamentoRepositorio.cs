@@ -6,10 +6,11 @@ namespace simple_pag_Domain.Interface
     public interface IFormaPagamentoRepositorio
     {
         Task AddPagamento(FormaPagamento formaPagamento);
-        bool ExistePagamento(string sigla);
+        Task<bool> ExistePagamento(string id);
         Task<IList<FormaPagamento>> GetAllPagamentos();
         Task<FormaPagamento> FindPagamentoById(string id);
-        Task InativarPagamento(string id);
+        Task InativarPagamento(FormaPagamento data);
+        Task AtivarPagamento(FormaPagamento data);
         Task UpdateAsync(FormaPagamento dados);
     }
 }

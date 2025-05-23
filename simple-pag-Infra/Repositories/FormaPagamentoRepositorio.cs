@@ -2,6 +2,8 @@
 using simple_pag_Domain.Interface;
 using simple_pag_Domain.Entity;
 using Microsoft.EntityFrameworkCore;
+using static System.Runtime.InteropServices.JavaScript.JSType;
+
 
 namespace simple_pag_Infra.Repositories
 {
@@ -20,14 +22,20 @@ namespace simple_pag_Infra.Repositories
             _context.SaveChanges();
         }
 
-        public bool ExistePagamento(string sigla)
+        public async Task<bool> ExistePagamento(string id)
         {
-            throw new NotImplementedException();
+            return await _context.FormaPagamentos.AnyAsync(a => a.Id == id);
         }
 
         public async Task<FormaPagamento> FindPagamentoById(string id)
         {
-            return await _context.FormaPagamentos.FindAsync(id);
+            var data = await _context.FormaPagamentos.FindAsync(id);
+            if (data == null)
+            {
+                data = new FormaPagamento();
+                data.Notification.Add("Registro não encontrado");
+            }
+            return data;
         }
 
         public async Task<IList<FormaPagamento>> GetAllPagamentos()
@@ -35,17 +43,28 @@ namespace simple_pag_Infra.Repositories
             return await _context.FormaPagamentos.ToListAsync();
         }
 
-        public Task InativarPagamento(string id)
+        public async Task InativarPagamento(FormaPagamento data)
         {
-            throw new NotImplementedException();
+            data.InativarFormaPagamento();
+            _context.FormaPagamentos.Attach(data).Property(x => x.Status).IsModified = true;
+            await _context.SaveChangesAsync();
+        }
+        public async Task AtivarPagamento(FormaPagamento data)
+        {
+            data.AtivarFormaPagamento();
+            _context.FormaPagamentos.Attach(data).Property(x => x.Status).IsModified = true;
+            
+            await _context.SaveChangesAsync();
         }
 
         public async Task UpdateAsync(FormaPagamento dados)
         {
-            _context.FormaPagamentos.Attach(dados).Property(x => x.Registro).IsModified = false;
             _context.FormaPagamentos.Update(dados);
+            _context.Entry(dados).Property(p => p.Status).IsModified = false;
+            _context.Entry(dados).Property(x => x.Registro).IsModified = false;
             await _context.SaveChangesAsync();
         }
 
+  
     }
 }

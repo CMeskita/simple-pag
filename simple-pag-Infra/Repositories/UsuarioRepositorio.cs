@@ -49,10 +49,13 @@ namespace simple_pag_Infra.Repositories
         }
         public async Task<Usuario?> GetUsuariobyEmail(string email)
         {
-            var result = await _context.Usuarios.FirstOrDefaultAsync(x => x.Email == email);
-            return result;
+            return await _context.Usuarios.FirstOrDefaultAsync(x => x.Email == email);
+          
         }
-
+        public async Task<bool> CheckIfEmailExist(string value)
+        {
+            return await _context.Usuarios.AnyAsync(a => a.Email == value);
+        }
 
     }
 }

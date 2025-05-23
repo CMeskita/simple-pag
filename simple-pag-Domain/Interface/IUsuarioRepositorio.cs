@@ -17,5 +17,6 @@ namespace simple_pag_Domain.Interface
         Task UpdateAsync(Usuario dados);
         Task<IList<Usuario>> GetUsuariosPaginadas(int pageNumber, int pageSize);
         Task<Usuario?> GetUsuariobyEmail(string email);
+        Task<bool> CheckIfEmailExist(string value);
     }
 }
