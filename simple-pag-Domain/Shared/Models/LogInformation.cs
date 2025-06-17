@@ -3,7 +3,7 @@
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
-namespace simple_pag_Domain.Models
+namespace simple_pag_Domain.Shared.Models
 {
     public class LogInformation
     {

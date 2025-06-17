@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using simple_pag_Domain.Entity;
-using simple_pag_Domain.Interface;
+using simple_pag_Domain.Shared.Interface;
 using simple_pag_Infra.Conection;
 
 

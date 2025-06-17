@@ -3,8 +3,7 @@ using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.Extensions.Options;
 using MongoDB.Driver;
 using simple_pag_Application.ServiceJWT;
-using simple_pag_Domain.Interface;
-using simple_pag_Domain.Models;
+using simple_pag_Domain.Shared.Interface;
 using simple_pag_Infra.Conection;
 using simple_pag_Infra.MongoRepositorio;
 using simple_pag_Infra.Repositories;
@@ -38,12 +37,22 @@ namespace simple_pag.Middleware
             services.AddScoped<IDbContextTransaction>(provider =>
             {
                 var context = provider.GetService<Context>();
-                return context.Database.BeginTransaction();
+                if (context == null)
+                    throw new InvalidOperationException("Context não pode ser nulo ao iniciar uma transação.");
+                try
+                {
+                    return context.Database.BeginTransaction();
+                }
+                catch (Exception ex)
+                {
+                    // Log ou debug aqui
+                    throw new InvalidOperationException("Erro ao iniciar transação: " + ex.Message, ex);
+                }
             });
 
             ////Mongo
 
-            
+
             services.Configure<MongoDbSettings>(options =>
             {
                 options.ConnectionString = _bancomongo ?? throw new InvalidOperationException("MONGO_CONNECTION_STRING não configurada.");

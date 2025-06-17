@@ -1,5 +1,5 @@
-﻿using simple_pag_Domain.Models;
-using simple_pag_Domain.Notificacao;
+﻿using simple_pag_Domain.Shared.Models;
+using simple_pag_Domain.Shared.Notificacao;
 
 namespace simple_pag_Domain.Entity
 {
@@ -42,6 +42,7 @@ namespace simple_pag_Domain.Entity
         {
             ChavePrivada=chaveprimaria.HashPassword();
         }
+        
 
         public Notify Notification => _notify;
         public string Id { get; protected set; }

@@ -1,5 +1,5 @@
 ﻿using simple_pag_Domain.Models;
-using simple_pag_Domain.Notificacao;
+using simple_pag_Domain.Shared.Notificacao;
 using System.Xml.Linq;
 
 namespace simple_pag_Domain.Entity
@@ -18,7 +18,7 @@ namespace simple_pag_Domain.Entity
             QtdParcelas = qtdParcelas;
             Modalidade = modalidade.ToUpper();
             Vencimento = vencimento.ToString();
-            FormaPagamento = formaPagamento;
+            PagamentoId = formaPagamento;
             Registro = DateTime.UtcNow.ToString("dd-MM-yyyy HH:mm:ss");
             ValidationRules(false);
         }
@@ -30,7 +30,7 @@ namespace simple_pag_Domain.Entity
             QtdParcelas = qtdParcelas;
             Modalidade = modalidade;
             Vencimento = vencimento;
-            FormaPagamento = formaPagamento;
+            PagamentoId = formaPagamento;
             ValidationRules(true);
         }
 
@@ -41,8 +41,10 @@ namespace simple_pag_Domain.Entity
         public int QtdParcelas { get; protected set; }
         public string Modalidade { get; protected set; }
         public string Vencimento { get; protected set; }
-        public string FormaPagamento { get; protected set; }
         public string Registro { get; protected set; }
+        public string PagamentoId { get; protected set; }
+
+        public virtual Pagamento Pagamentos { get; protected set; }
 
         private void ValidationRules(bool update = false)
         {
@@ -66,7 +68,7 @@ namespace simple_pag_Domain.Entity
             {
                 _notify.Add("Vencimento não informado");
             }
-            if (string.IsNullOrEmpty(FormaPagamento))
+            if (string.IsNullOrEmpty(PagamentoId))
             {
                 _notify.Add("Forma de Pagamento não informado");
             }

@@ -11,12 +11,12 @@ namespace simple_pag_Infra.Conection
 
         }
         public DbSet<Finalizadora> Finalizadoras { get; set; }
-        public DbSet<FormaPagamento> FormaPagamentos { get; set; }
+        public DbSet<Pagamento> Pagamentos { get; set; }
         public DbSet<Usuario> Usuarios { get; set; }
         protected override void OnModelCreating(ModelBuilder modelbuilder)
         {
             modelbuilder.Entity<Finalizadora>().HasKey(r => r.Id);
-            modelbuilder.Entity<FormaPagamento>().HasKey(m => m.Id);
+            modelbuilder.Entity<Pagamento>().HasKey(m => m.Id);
             modelbuilder.Entity<Usuario>().HasKey(s => s.Id);
 
             base.OnModelCreating(modelbuilder);

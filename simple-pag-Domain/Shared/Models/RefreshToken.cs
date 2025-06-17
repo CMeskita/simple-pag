@@ -1,5 +1,4 @@
-﻿
-namespace simple_pag_Domain.Models
+﻿namespace simple_pag_Domain.Shared.Models
 {
     public class RefreshToken
     {       

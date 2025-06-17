@@ -28,7 +28,7 @@ namespace simple_pag_Test
                 Assert.Equal(qtdParcelas, finalizadora.QtdParcelas);
                 Assert.Equal(modalidade.ToUpper(), finalizadora.Modalidade);
                 Assert.Equal(vencimento, finalizadora.Vencimento);
-                Assert.Equal(formaPagamento, finalizadora.FormaPagamento);
+                Assert.Equal(formaPagamento, finalizadora.PagamentoId);
             }
 
             [Fact]
@@ -51,7 +51,7 @@ namespace simple_pag_Test
                 Assert.Equal(qtdParcelas, finalizadora.QtdParcelas);
                 Assert.Equal(modalidade, finalizadora.Modalidade);
                 Assert.Equal(vencimento, finalizadora.Vencimento);
-                Assert.Equal(formaPagamento, finalizadora.FormaPagamento);
+                Assert.Equal(formaPagamento, finalizadora.PagamentoId);
             }
         }
     }

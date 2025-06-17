@@ -2,7 +2,7 @@
 using simple_pag_Application.Command;
 using simple_pag_Application.Repsonse;
 using simple_pag_Domain.Entity;
-using simple_pag_Domain.Interface;
+using simple_pag_Domain.Shared.Interface;
 
 namespace simple_pag_Application.Handler.Finalizadoras
 {
@@ -29,7 +29,7 @@ namespace simple_pag_Application.Handler.Finalizadoras
                         QtdParcelas = fin.QtdParcelas,
                         Modalidade = fin.Modalidade,
                         Vencimento = fin.Vencimento,
-                        FormaPagamento = fin.FormaPagamento
+                        FormaPagamento = fin.PagamentoId
 
                     }).ToList(),
 

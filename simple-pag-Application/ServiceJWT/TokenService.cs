@@ -3,7 +3,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json.Linq;
 using simple_pag_Domain.Entity;
-using simple_pag_Domain.Models;
+using simple_pag_Domain.Shared.Models;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;

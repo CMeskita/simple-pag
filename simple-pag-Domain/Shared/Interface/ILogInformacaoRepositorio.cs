@@ -1,8 +1,6 @@
-﻿
+﻿using simple_pag_Domain.Shared.Models;
 
-using simple_pag_Domain.Models;
-
-namespace simple_pag_Domain.Interface
+namespace simple_pag_Domain.Shared.Interface
 { 
     public interface ILogInformacaoRepositorio
     {

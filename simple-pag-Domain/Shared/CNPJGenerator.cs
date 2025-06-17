@@ -10,7 +10,7 @@ namespace simple_pag_Domain.Models
         private const int TamanhoGrupoNumerico2 = 3;
         private const int TamanhoGrupoAlphaNumerico = 4; // Grupo 4 agora alfanumérico
         private const int TamanhoGrupoAlfa2 = 2;
-        private const int TamanhoDV = 2;
+ 
         private const int TamanhoCNPJSemDV = TamanhoGrupoNumerico1 + TamanhoGrupoAlfa1 + TamanhoGrupoNumerico2 + TamanhoGrupoAlphaNumerico;
 
         private static readonly Regex RegexCNPJSemDV = new Regex(@"^([A-Z\d]){12}$");
@@ -18,7 +18,6 @@ namespace simple_pag_Domain.Models
         private static readonly Regex RegexCaracteresNaoPermitidos = new Regex(@"[^A-Z\d./-]", RegexOptions.IgnoreCase);
         private const int ValorBaseNumerico = (int)'0';
         private static readonly int[] PesosDV = { 6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2 };
-        private const string CnpjZeradoSemMascara = "00AAA0000000BB";
         private const string CnpjZerado = "00000000000000";
         private static readonly Regex RegexCaracteresMascara = new Regex(@"[./-]");
 

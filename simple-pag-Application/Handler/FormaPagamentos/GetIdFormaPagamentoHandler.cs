@@ -2,7 +2,7 @@
 using simple_pag_Application.Command;
 using simple_pag_Application.Repsonse;
 using simple_pag_Domain.Entity;
-using simple_pag_Domain.Interface;
+using simple_pag_Domain.Shared.Interface;
 
 namespace simple_pag_Application.Handler.FormaPagamentos
 {
@@ -19,7 +19,7 @@ namespace simple_pag_Application.Handler.FormaPagamentos
         {
             try
             {
-                FormaPagamento formaPagamento = _formaPagamentoRepositorio.FindPagamentoById(request.Id).Result;
+                Pagamento formaPagamento = _formaPagamentoRepositorio.FindPagamentoById(request.Id).Result;
 
                 if (formaPagamento == null)
                 {

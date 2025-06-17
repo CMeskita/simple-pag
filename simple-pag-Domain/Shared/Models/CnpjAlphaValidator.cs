@@ -1,6 +1,4 @@
-﻿
-
-namespace simple_pag_Domain.Models
+﻿namespace simple_pag_Domain.Shared.Models
 {
     using System;
     using System.Linq;
@@ -61,13 +59,13 @@ namespace simple_pag_Domain.Models
             // 1. Cálculo do primeiro dígito verificador (DV1)
             int somaDV1 = CalcularSomaPonderada(baseCnpj, pesosDV1);
             int restoDV1 = somaDV1 % 11;
-            int dv1 = (restoDV1 < 2) ? 0 : 11 - restoDV1;
+            int dv1 = restoDV1 < 2 ? 0 : 11 - restoDV1;
 
             // 2. Cálculo do segundo dígito verificador (DV2)
             string baseCnpjComDV1 = baseCnpj + dv1; // Concatena a base com o DV1 calculado
             int somaDV2 = CalcularSomaPonderada(baseCnpjComDV1, pesosDV2);
             int restoDV2 = somaDV2 % 11;
-            int dv2 = (restoDV2 < 2) ? 0 : 11 - restoDV2;
+            int dv2 = restoDV2 < 2 ? 0 : 11 - restoDV2;
 
             return $"{dv1}{dv2}"; // Retorna os dois dígitos verificadores como uma string
         }

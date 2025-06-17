@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using simple_pag_Application.Command;
 using simple_pag_Application.Repsonse;
-using simple_pag_Domain.Interface;
+using simple_pag_Domain.Shared.Interface;
 using simple_pag_Infra.Conection;
 using simple_pag_Infra.Repositories;
 

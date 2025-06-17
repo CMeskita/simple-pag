@@ -1,9 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
 using simple_pag_Application.ServiceOpenai;
-using simple_pag_Domain.Interface;
-using System.Text;
 
 namespace simple_pag.Controllers
 {

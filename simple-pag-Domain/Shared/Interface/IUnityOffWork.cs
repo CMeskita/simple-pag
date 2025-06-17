@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace simple_pag_Domain.Interface
+namespace simple_pag_Domain.Shared.Interface
 {
     public interface IUnityOffWork
     {

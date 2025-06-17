@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace simple_pag_Domain.Notificacao
+namespace simple_pag_Domain.Shared.Notificacao
 {
     public class BrokenRules
     {

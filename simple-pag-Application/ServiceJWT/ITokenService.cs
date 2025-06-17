@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
-using simple_pag_Domain.Models;
+using simple_pag_Domain.Shared.Models;
 
 namespace simple_pag_Application.ServiceJWT
 {

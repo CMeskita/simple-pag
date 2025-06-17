@@ -3,8 +3,8 @@ using simple_pag_Application.Command;
 using simple_pag_Application.Repsonse;
 using simple_pag_Application.ServiceJWT;
 using simple_pag_Domain.Entity;
-using simple_pag_Domain.Interface;
-using simple_pag_Domain.Models;
+using simple_pag_Domain.Shared.Interface;
+using simple_pag_Domain.Shared.Models;
 
 
 namespace simple_pag_Application.Handler.Login

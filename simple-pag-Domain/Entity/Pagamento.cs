@@ -1,28 +1,28 @@
-﻿using simple_pag_Domain.Notificacao;
-using System.Drawing;
+﻿using simple_pag_Domain.Shared.Models;
+using simple_pag_Domain.Shared.Notificacao;
 
 namespace simple_pag_Domain.Entity
 {
-    public class FormaPagamento
+    public class Pagamento
     {
         private readonly Notify _notify;
 
-        public FormaPagamento()
+
+        public Pagamento()
         {
             _notify = new Notify();
         }
-        public FormaPagamento(string nome, int codFinalizadora, string sigla)
+        public Pagamento(string nome)
         {
             Id = Guid.NewGuid().ToString().ToUpper();
-            Nome = nome;
-            CodFinalizadora = codFinalizadora;
-            Registro = DateTime.UtcNow.ToString("dd-MM-yyyy HH:mm:ss");
-            Sigla = sigla;
+            Nome = StringExtensions.RemoverAcentos(nome).ToUpper().Trim();   
+            Sigla = StringExtensions.GerarSiglaAsync(nome);
+            Registro = DateTime.UtcNow.ToString("dd-MM-yyyy HH:mm:ss");      
             Status = true;
             ValidationRules(false);
         }
 
-        public FormaPagamento(string id, string nome, int codFinalizadora, string sigla)
+        public Pagamento(string id, string nome, int codFinalizadora, string sigla)
         {
             Id = id;
             Nome = nome;
@@ -39,7 +39,14 @@ namespace simple_pag_Domain.Entity
         {
             Status = false;
         }
-
+        public void SetCodPagamento(int codFinalizadora)
+        {
+            CodFinalizadora = codFinalizadora;
+        }
+        public void SetSigla(string sigla)
+        {
+            Sigla = sigla;
+        }
         public Notify Notification => _notify;
         public string Id { get; protected set; }
         public string Nome { get; protected set; }
@@ -54,18 +61,10 @@ namespace simple_pag_Domain.Entity
             {
                 _notify.Add("ID não informado");
             }
-            
-            if (CodFinalizadora <= 0)
-            {
-                _notify.Add("Finalizadora não pode ser menor ou igual a zero.");
-            }
+                   
             if (string.IsNullOrEmpty(Nome))
             {
                 _notify.Add("Nome não informado");
-            }
-            if (string.IsNullOrEmpty(Sigla))
-            {
-                _notify.Add("Sigla não informado");
             }
            
         }

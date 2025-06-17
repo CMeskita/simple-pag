@@ -1,6 +1,6 @@
 ﻿using MongoDB.Driver;
-using simple_pag_Domain.Interface;
-using simple_pag_Domain.Models;
+using simple_pag_Domain.Shared.Interface;
+using simple_pag_Domain.Shared.Models;
 
 
 namespace simple_pag_Infra.MongoRepositorio
