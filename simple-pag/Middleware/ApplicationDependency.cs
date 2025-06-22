@@ -13,7 +13,7 @@ namespace simple_pag.Middleware
             services.AddMediatR(mdt => mdt.RegisterServicesFromAssemblyContaining<CreateUsuarioHandler>());
             services.AddMediatR(mdt => mdt.RegisterServicesFromAssemblyContaining<CreateFormaPagamentoHandler>());
             services.AddMediatR(mdt => mdt.RegisterServicesFromAssemblyContaining<LoginHandler>());
-            services.AddMediatR(mdt => mdt.RegisterServicesFromAssemblyContaining<AuthorizationHandler>());
+            //services.AddMediatR(mdt => mdt.RegisterServicesFromAssemblyContaining<AuthorizationHandler>());
            
         }
     }

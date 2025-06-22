@@ -31,10 +31,10 @@ namespace simple_pag_Application.Handler.Finalizadoras
                 {
                     Id = finalizadora.Id,
                     Valor = finalizadora.Valor,
-                    QtdParcelas = finalizadora.QtdParcelas,
-                    Modalidade = finalizadora.Modalidade,
-                    Vencimento = finalizadora.Vencimento,
-                    FormaPagamento = finalizadora.PagamentoId,
+                    //QtdParcelas = finalizadora.QtdParcelas,
+                    //Modalidade = finalizadora.Modalidade,
+                    //Vencimento = finalizadora.Vencimento,
+                    //FormaPagamento = finalizadora.PagamentoId,
                 };
 
 

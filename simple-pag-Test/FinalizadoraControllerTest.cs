@@ -25,11 +25,11 @@ namespace simple_pag_Test
             // Arrange
             var command = new CommandFinalizadora
             {
-                Valor = 100.0m,
-                QtdParcelas = 2,
-                Modalidade = "Crédito",
-                Vencimento = "2023-12-31",
-                FormaPagamento = "Cartão"
+                //Valor = 100.0m,
+                //QtdParcelas = 2,
+                ////Modalidade = "Crédito",
+                //Vencimento = "2023-12-31",
+                //FormaPagamento = "Cartão"
             };
 
             var response = new Response
@@ -56,11 +56,11 @@ namespace simple_pag_Test
             // Arrange
             var command = new CommandFinalizadora
             {
-                Valor = 100.0m,
-                QtdParcelas = 2,
-                Modalidade = "Crédito",
-                Vencimento = "2023-12-31",
-                FormaPagamento = "Cartão"
+                //Valor = 100.0m,
+                //QtdParcelas = 2,
+                //Modalidade = "Crédito",
+                //Vencimento = "2023-12-31",
+                //FormaPagamento = "Cartão"
             };
 
             _mediatorMock.Setup(m => m.Send(It.IsAny<CommandFinalizadora>(), default))

@@ -23,19 +23,8 @@ namespace simple_pag.Controllers
         {
             try
             {
-                _commandAuthorization.authorizationHeader = HttpContext.Request.Headers.Authorization.ToString();
-
-                if (string.IsNullOrEmpty(_commandAuthorization.authorizationHeader))
-                {
-                    return StatusCode(401, "Cabeçalho de autorização ausente ou inválido");
-                }
-
-                var responses = await _mediator.Send(_commandAuthorization);
-
-                if (responses.IsAuthorized != true)
-                {
-                    return StatusCode(401, "Não Autorizado o acesso");
-                }
+                //var headre = HttpContext.Request.Headers.Authorization.ToString();
+              
 
                 var response = await _mediator.Send(request);
                 return StatusCode(201, response);

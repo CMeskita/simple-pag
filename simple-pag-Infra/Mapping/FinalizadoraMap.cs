@@ -25,24 +25,6 @@ namespace simple_pag_Infra.Mapping
                .HasMaxLength(100)
                .IsRequired();
 
-            builder.Property(finalizadora => finalizadora.QtdParcelas)
-               .HasColumnName("QtdParcelas")
-               .HasColumnType("int")
-               .HasMaxLength(14)
-               .IsRequired();
-
-            builder.Property(finalizadora => finalizadora.Modalidade)
-              .HasColumnName("Modalidade")
-              .HasColumnType("varchar")
-              .HasMaxLength(100)
-              .IsRequired();
-
-            builder.Property(finalizadora => finalizadora.Vencimento)
-               .HasColumnName("Vencimento")
-               .HasColumnType("varchar")
-               .HasMaxLength(40)
-               .IsRequired();
-
             builder.Property(finalizadora => finalizadora.Registro)
                 .HasColumnName("Registro")
                 .HasColumnType("varchar")

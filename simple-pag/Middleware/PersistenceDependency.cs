@@ -58,24 +58,24 @@ namespace simple_pag.Middleware
                 options.ConnectionString = _bancomongo ?? throw new InvalidOperationException("MONGO_CONNECTION_STRING não configurada.");
                 options.DatabaseName = _mongoname ?? throw new InvalidOperationException("MONGO_DATABASE não configurado.");
             });
-            services.AddSingleton<IMongoClient>(sp =>
-            {
-                var settings = sp.GetRequiredService<IOptions<MongoDbSettings>>().Value;
-                return new MongoClient(settings.ConnectionString);
-            });
-            services.AddScoped(sp =>
-            {
-                var settings = sp.GetRequiredService<IOptions<MongoDbSettings>>().Value;
-                var client = sp.GetRequiredService<IMongoClient>();
-                return client.GetDatabase(settings.DatabaseName);
-            });
+            //services.AddSingleton<IMongoClient>(sp =>
+            //{
+            //    var settings = sp.GetRequiredService<IOptions<MongoDbSettings>>().Value;
+            //    return new MongoClient(settings.ConnectionString);
+            //});
+            //services.AddScoped(sp =>
+            ////{
+            ////    var settings = sp.GetRequiredService<IOptions<MongoDbSettings>>().Value;
+            ////    var client = sp.GetRequiredService<IMongoClient>();
+            ////    return client.GetDatabase(settings.DatabaseName);
+            //});
 
 
             //Repositorys
 
             services.AddScoped<IFinalizadoraRepositorio, FinalizadoraRepositorio>();
             services.AddScoped<IUsuarioRepositorio, UsuarioRepositorio>();
-            services.AddScoped<ILogInformacaoRepositorio, LogInformacaoRepositorio>();
+            //services.AddScoped<ILogInformacaoRepositorio, LogInformacaoRepositorio>();
             services.AddScoped<IFormaPagamentoRepositorio, FormaPagamentoRepositorio>();
             services.AddScoped<ITokenService, TokenService>();
 

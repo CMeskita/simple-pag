@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static simple_pag_Domain.Entity.Finalizadora;
 
 namespace simple_pag_Application.Repsonse
 {
@@ -14,9 +15,6 @@ namespace simple_pag_Application.Repsonse
     {
         public string Id { get;  set; }
         public decimal Valor { get;  set; }
-        public int QtdParcelas { get;  set; }
-        public string Modalidade { get;  set; }
-        public string Vencimento { get;  set; }
-        public string FormaPagamento { get;  set; }
+        public string Registro { get;  set; }
     }
 }

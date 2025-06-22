@@ -19,22 +19,22 @@ namespace simple_pag_Application.Handler.Finalizadoras
         {
             try
             {
-                IEnumerable<Finalizadora> finalizadora = await _finalizadoraRepositorio.GetFinalizadorasPaginadas(request.pageNumber,request.pageSize);
-                FinalizadoraResponse response = new FinalizadoraResponse
-                {
-                    Dados = finalizadora.Select(fin => new FinalizadoraResponseItem
-                    {
-                        Id = fin.Id,
-                        Valor = fin.Valor,
-                        QtdParcelas = fin.QtdParcelas,
-                        Modalidade = fin.Modalidade,
-                        Vencimento = fin.Vencimento,
-                        FormaPagamento = fin.PagamentoId
+                //IEnumerable<Finalizadora> finalizadora = await _finalizadoraRepositorio.GetFinalizadorasPaginadas(request.pageNumber,request.pageSize);
+                //FinalizadoraResponse response = new FinalizadoraResponse
+                //{
+                //    Dados = finalizadora.Select(fin => new FinalizadoraResponseItem
+                //    {
+                //        Id = fin.Id,
+                //        Valor = fin.Valor,
+                //        //QtdParcelas = fin.QtdParcelas,
+                //        //Modalidade = fin.Modalidade,
+                //        //Vencimento = fin.Vencimento,
+                //        //FormaPagamento = fin.PagamentoId
 
-                    }).ToList(),
+                //    }).ToList(),
 
-                };
-                return response;
+                //};
+                return null; ;
             }
             catch (Exception)
             {

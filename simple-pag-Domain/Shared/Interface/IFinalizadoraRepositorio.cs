@@ -12,9 +12,12 @@ namespace simple_pag_Domain.Shared.Interface
         Task UpdateAsync(Finalizadora dados);
         decimal TotalPagamentos();
         int TotalQtdePagamentos();
-        decimal TotalPagamentosAvista();
-        decimal TotalPagamentosAPrazo();
-        Task<IList<Finalizadora>> GetFinalizadorasPaginadas(int pageNumber, int pageSize);
-      
+        //decimal TotalPagamentosAvista();
+        //decimal TotalPagamentosAPrazo();
+        //Task<IList<Finalizadora>> GetFinalizadorasPaginadas(int pageNumber, int pageSize);
+
+        Task AddFinalizadoraPagamento(FinalizadoraPagamento dados);
+
+
     }
 }
