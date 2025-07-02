@@ -18,5 +18,6 @@ namespace simple_pag_Domain.Shared.Interface
         Task<IList<Usuario>> GetUsuariosPaginadas(int pageNumber, int pageSize);
         Task<Usuario?> GetUsuariobyEmail(string email);
         Task<bool> CheckIfEmailExist(string value);
+        Task AddContatoUsuario(Contato conato);
     }
 }

@@ -6,7 +6,7 @@ using simple_pag_Domain.Shared.Interface;
 
 namespace simple_pag_Application.Handler.Finalizadoras
 {
-    internal class GetAllFinalizadoraHandler : IRequestHandler<CommandGetAllFinalizadora, FinalizadoraResponse>
+    internal class GetAllFinalizadoraHandler : IRequestHandler<CommandGetAllFinalizadora, List<FinalizadoraResponse>>
     {
         private readonly IFinalizadoraRepositorio _finalizadoraRepositorio;
 
@@ -15,26 +15,20 @@ namespace simple_pag_Application.Handler.Finalizadoras
             _finalizadoraRepositorio = finalizadoraRepositorio;
         }
 
-        public async Task<FinalizadoraResponse> Handle(CommandGetAllFinalizadora request, CancellationToken cancellationToken)
+        public async Task<List<FinalizadoraResponse>> Handle(CommandGetAllFinalizadora request, CancellationToken cancellationToken)
         {
             try
             {
-                //IEnumerable<Finalizadora> finalizadora = await _finalizadoraRepositorio.GetFinalizadorasPaginadas(request.pageNumber,request.pageSize);
-                //FinalizadoraResponse response = new FinalizadoraResponse
-                //{
-                //    Dados = finalizadora.Select(fin => new FinalizadoraResponseItem
-                //    {
-                //        Id = fin.Id,
-                //        Valor = fin.Valor,
-                //        //QtdParcelas = fin.QtdParcelas,
-                //        //Modalidade = fin.Modalidade,
-                //        //Vencimento = fin.Vencimento,
-                //        //FormaPagamento = fin.PagamentoId
+                var finalizadora = _finalizadoraRepositorio.GetAllFinalizadoras().ToList();
+                var response = new List<FinalizadoraResponse>
+                   (finalizadora.Select(f=> new FinalizadoraResponse 
+                   {
+                       Id =f.Id,
+                       Valor = f.Valor,                      
+                       Registro = f.Registro
+                   }));
+                return response;
 
-                //    }).ToList(),
-
-                //};
-                return null; ;
             }
             catch (Exception)
             {

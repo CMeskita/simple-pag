@@ -1,4 +1,4 @@
-﻿namespace simple_pag.Util
+﻿namespace simple_pag.Shared.Util
 {
     public static class DotEnv
     {

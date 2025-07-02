@@ -6,8 +6,6 @@ namespace simple_pag_Application.Command
     public class CommandFormaPagamento : IRequest<Response>
     {
         public string Nome { get; set; }
-        //public int CodFinalizadora { get; set; }
-        //public string Sigla { get; set; }
 
         public static implicit operator Pagamento(CommandFormaPagamento formpag)
             => new Pagamento(formpag.Nome);

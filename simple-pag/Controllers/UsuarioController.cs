@@ -36,13 +36,33 @@ namespace simple_pag.Controllers
                 return BadRequest(new Response { StatusCode = StatusCodes.Status400BadRequest, Message = ex.Message });
             }
         }
+        
+        [HttpPost]
+        [Route("contatos")]
+        public async Task<IActionResult> CreateContatoUsuario([FromBody] CommandContatoUsuario request)
+        {
+
+            try
+            {
+
+                var response = await _mediator.Send(request);
+
+                return StatusCode(201, response);
+
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new Response { StatusCode = StatusCodes.Status400BadRequest, Message = ex.Message });
+            }
+        }
+        
         [HttpGet]
         [Route("todos")]
-        public async Task<IActionResult> GetAllUsuario([FromQuery] CommandGetAllUsuario request)
+        public async Task<IActionResult> GetAllUsuario()
         {
             try
             {
-                var response = await _mediator.Send(request);
+                var response = await _mediator.Send(new CommandGetAllUsuario());
                 return Ok(response);
             }
             catch (Exception ex)
@@ -51,6 +71,22 @@ namespace simple_pag.Controllers
             }
             ;
         }
+        [HttpGet]
+        [Route("contatos-usuario")]
+        public async Task<IActionResult> GetAllContatoUuario(string id)
+        {
+            try
+            {
+                var response = await _mediator.Send(new CommandGetAllUsuario());
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new Response { StatusCode = StatusCodes.Status400BadRequest, Message = ex.Message });
+            }
+            ;
+        }
+
         [HttpGet]
         [Route("id")]
         public async Task<IActionResult> GetIdUsuario([FromQuery] CommandGetIdUsuario request)
@@ -70,8 +106,8 @@ namespace simple_pag.Controllers
                 return BadRequest(new Response { StatusCode = StatusCodes.Status400BadRequest, Message = ex.Message });
             }
         }
+        
         [HttpPut]
-
         public async Task<IActionResult> UpdateUsuario([FromBody] CommandUpdateUsuario request)
         {
             try

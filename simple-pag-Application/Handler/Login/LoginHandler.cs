@@ -32,8 +32,8 @@ namespace simple_pag_Application.Handler.Login
                         StatusCode = 404
                     };
                 }
-                var hash = request.Senha.HashPassword();
-                if (hash != usuario.ChavePrivada)
+                //var hash = request.Senha.StringHash();
+                if (request.Senha.StringHash() != usuario.ChavePrivada)
                 {
                     return new TokenResponse
                     {

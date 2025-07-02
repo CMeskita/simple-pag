@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -31,14 +32,14 @@ namespace simple_pag_Domain.Entity
 
 
         }
-        [Key]
+       
         public string Id { get; set; }
         public string FinalizadoraId { get; set; }
         public decimal Valor { get; set; }
         public int Parcelas { get; set; }
         public modalidadePagamento Modalidade { get; set; }
         public string PagamentoId { get; set; }
-        public string Vencimento { get; set; } 
+        public string Vencimento { get; set; }
 
 
         public Notify Notification => _notify;
@@ -61,7 +62,7 @@ namespace simple_pag_Domain.Entity
             {
                 _notify.Add("Prcelas não pode ser menor a zero.");
             }
-            if (Modalidade != 0 && Parcelas == 0)
+            if (!Modalidade.Equals(modalidadePagamento.AVISTA) && Parcelas == 0)
             {
 
                 _notify.Add("Não há parcelamento para modalidade.");
@@ -78,7 +79,7 @@ namespace simple_pag_Domain.Entity
                 {
                     if (DateTime.TryParse(Vencimento, out var dataVencimento))
                     {
-                        if (dataVencimento.Date.ToString("dd-MM-yyyy") == DateTime.UtcNow.Date.ToString("dd-MM-yyyy"))
+                        if (dataVencimento.Date.ToString("dd-MM-yyyy") != DateTime.UtcNow.Date.ToString("dd-MM-yyyy"))
                         {
                             _notify.Add("Para modalidade AVISTA, o vencimento deve ser a data atual.");
                         }
@@ -132,5 +133,6 @@ namespace simple_pag_Domain.Entity
             AVISTA = 1,
             PARCELADO = 2
         }
+     
     }
 }

@@ -1,13 +1,12 @@
 ﻿using MediatR;
 using simple_pag_Application.Command;
 using simple_pag_Application.Repsonse;
-using simple_pag_Domain.Entity;
 using simple_pag_Domain.Shared.Interface;
 
 
 namespace simple_pag_Application.Handler.Finalizadoras
 {
-    public class GetIdFinlaizadoraHandler : IRequestHandler<CommandGetIdFinalizadora, FinalizadoraResponseItem>
+    public class GetIdFinlaizadoraHandler : IRequestHandler<CommandGetIdFinalizadora, List<FinalizadoraResponseItem>>
     {
         private readonly IFinalizadoraRepositorio _repository;
 
@@ -16,30 +15,22 @@ namespace simple_pag_Application.Handler.Finalizadoras
             _repository = repository;
         }
 
-        public async Task<FinalizadoraResponseItem> Handle(CommandGetIdFinalizadora request, CancellationToken cancellationToken)
+        public async Task<List<FinalizadoraResponseItem>> Handle(CommandGetIdFinalizadora request, CancellationToken cancellationToken)
         {
             try
             {
-                Finalizadora finalizadora = _repository.FindFinalizadoraById(request.Id).Result;
-
-                if (finalizadora == null)
-                {
-                    return null;
-                }
-
-                FinalizadoraResponseItem response = new FinalizadoraResponseItem
-                {
-                    Id = finalizadora.Id,
-                    Valor = finalizadora.Valor,
-                    //QtdParcelas = finalizadora.QtdParcelas,
-                    //Modalidade = finalizadora.Modalidade,
-                    //Vencimento = finalizadora.Vencimento,
-                    //FormaPagamento = finalizadora.PagamentoId,
-                };
-
-
-
+                var finalizadora = _repository.FindFinalizadoraById(request.Id).Result;
+                var response = new List<FinalizadoraResponseItem>
+                    (finalizadora.Select(f => new FinalizadoraResponseItem
+                    {
+                        Valor = f.Valor,
+                        Parcelas = f.Parcelas,
+                        Modalidade = f.Modalidade,
+                        Pagamento = f.PagamentoId,
+                        Vencimento = f.Vencimento
+                    }));
                 return response;
+
             }
             catch (Exception)
             {

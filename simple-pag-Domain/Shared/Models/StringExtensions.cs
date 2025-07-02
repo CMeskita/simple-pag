@@ -1,4 +1,5 @@
 ﻿using System.Globalization;
+using System.Reflection;
 using System.Security.Cryptography;
 using System.Text;
 
@@ -9,11 +10,11 @@ namespace simple_pag_Domain.Shared.Models
         private static readonly char[] CaracteresAlphaNumericos = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".ToCharArray();
         private static readonly Random Random = new Random(); // Adiciona uma instância estática de Random
 
-        public static string HashPassword(this string password)
+        public static string StringHash(this string texto)
         {
             using (SHA256 sha256Hash = SHA256.Create())
             {
-                byte[] bytes = sha256Hash.ComputeHash(Encoding.UTF8.GetBytes(password));
+                byte[] bytes = sha256Hash.ComputeHash(Encoding.UTF8.GetBytes(texto));
                 StringBuilder builder = new StringBuilder();
                 for (int i = 0; i < bytes.Length; i++)
                 {
@@ -83,6 +84,19 @@ namespace simple_pag_Domain.Shared.Models
             }
 
             return sb.ToString().Normalize(NormalizationForm.FormC);
+        }
+
+        public static Dictionary<string, object> ObjetoParaDicionario(object obj)
+        {
+            var dict = new Dictionary<string, object>();
+            if (obj == null) return dict;
+
+            foreach (PropertyInfo prop in obj.GetType().GetProperties())
+            {
+                dict[prop.Name] = prop.GetValue(obj);
+            }
+
+            return dict;
         }
     }
 }

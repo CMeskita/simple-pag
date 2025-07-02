@@ -1,20 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static simple_pag_Domain.Entity.Finalizadora;
+﻿using static simple_pag_Domain.Entity.FinalizadoraPagamento;
 
 namespace simple_pag_Application.Repsonse
 {
     public class FinalizadoraResponse
     {
-        public List<FinalizadoraResponseItem> Dados { get; set; }
+        public string Id { get; set; }
+        public decimal Valor { get; set; }
+        public string Registro { get; set; }
     }
     public class FinalizadoraResponseItem
-    {
-        public string Id { get;  set; }
-        public decimal Valor { get;  set; }
-        public string Registro { get;  set; }
+    {       
+        public decimal Valor { get; set; }
+        public int Parcelas { get; set; }
+        public modalidadePagamento Modalidade { get; set; }
+        public string Pagamento { get; set; }
+        public string Vencimento { get; set; }
+
     }
 }

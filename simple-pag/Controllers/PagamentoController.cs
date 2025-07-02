@@ -35,11 +35,11 @@ namespace simple_pag.Controllers
         [HttpGet]
         [Route("todos")]
         [AllowAnonymous]
-        public async Task<IActionResult> GetAllFormaPagamento([FromQuery] CommandGetAllFormaPagamento request)
+        public async Task<IActionResult> GetAllFormaPagamento()
         {
             try
             {
-                var response = await _mediator.Send(request);
+                var response = await _mediator.Send(new CommandGetAllFormaPagamento());
                 return Ok(response);
             }
             catch (Exception ex)

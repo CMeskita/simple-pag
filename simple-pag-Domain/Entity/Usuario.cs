@@ -16,7 +16,7 @@ namespace simple_pag_Domain.Entity
             Id = Guid.NewGuid().ToString().ToUpper();
             Nome = nome;
             Email = email;
-            ChavePrivada = chavePrivada;
+            ChavePrivada = chavePrivada.StringHash();
             Registro = DateTime.UtcNow.ToString("dd-MM-yyyy HH:mm:ss");
             Status = true;
 
@@ -40,7 +40,7 @@ namespace simple_pag_Domain.Entity
         }
         public void HashChavePrimaria(string chaveprimaria) 
         {
-            ChavePrivada=chaveprimaria.HashPassword();
+            ChavePrivada=chaveprimaria.StringHash();
         }
         
 

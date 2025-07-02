@@ -26,35 +26,16 @@ namespace simple_pag_Infra.Repositories
             _context.SaveChanges();
 
         }
-        public async Task<Finalizadora> FindFinalizadoraById(string id)
+        public async Task<IList<FinalizadoraPagamento>> FindFinalizadoraById(string id)
         {
-            var data = await _context.Finalizadoras.FindAsync(id);
-            if (data == null)
-            {
-                data = new Finalizadora();
-                data.Notification.Add("Registro não encontrado");
-            }
-            return data;
-        }
+            var result=_context.FinalizadoraPagamentos.Where(p => p.FinalizadoraId == id).ToList();
+            return result;
+    }
 
-        public Task<IList<Finalizadora>> GetAllFinalizadoras()
+        public IList<Finalizadora> GetAllFinalizadoras()
         {
-            throw new NotImplementedException();
+            return  _context.Finalizadoras.OrderByDescending(r=>r.Registro).ToList();
         }
-
-        //public async Task<IList<Finalizadora>> GetAllFinalizadoras()
-        //{
-        //    return await _context.Finalizadoras.ToListAsync();
-        //}
-
-        //public async Task<IList<Finalizadora>> GetFinalizadorasPaginadas(int pageNumber, int pageSize)
-        //{
-        //    return await _context.Finalizadoras
-        //        .OrderBy(x => x.Registro) // Ordena por Valor
-        //        .Skip((pageNumber - 1) * pageSize)
-        //        .Take(pageSize)
-        //        .ToListAsync();
-        //}
 
         public decimal TotalPagamentos()
         {
@@ -82,5 +63,21 @@ namespace simple_pag_Infra.Repositories
             _context.Entry(dados).Property(x => x.Registro).IsModified = false;           
             await _context.SaveChangesAsync();
         }
+        public async Task<Finalizadora> FindFinalizadorById(string id)
+        {
+            var data = await _context.Finalizadoras.FindAsync(id);
+            if (data == null)
+            {
+                data = new Finalizadora();
+                data.Notification.Add("Registro não encontrado");
+            }
+            return data;
+        }
+        public async Task<IList<Finalizadora>> FindFinalizadoraByUsuarioId(string id)
+        {
+            var result = _context.Finalizadoras.Where(p => p.UsuarioId == id).ToList();
+            return result;
+        }
+
     }
 }

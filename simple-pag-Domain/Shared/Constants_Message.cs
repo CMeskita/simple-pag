@@ -22,4 +22,18 @@ namespace simple_pag_Domain.Shared
         public const int STATUS_CODE_INTERNAL_SERVER_ERROR = 500;   //500 Internal Server Error - O servidor encontrou uma situação com a qual não sabe lidar.
         public const int STATUS_CODE_NOTIMPLEMENTED = 501;          //501 Not Implemented - O método da requisição não é suportado pelo servidor e não pode ser manipulado.Os únicos métodos exigidos que servidores suportem (e portanto não devem retornar este código) são GET e HEAD.
     }
+
+    public static class Constants_Environment
+    {
+        public const string ENVIRONMENT_DEVELOPMENT = "Development"; //Ambiente de desenvolvimento
+        public const string ENVIRONMENT_PRODUCTION = "Production";   //Ambiente de produção
+        public const string ENVIRONMENT_STAGING = "Staging";         //Ambiente de homologação
+    }
+
+    public static class User_No_Identifyed
+    {
+        public const string USUARIO_NAO_IDENTIFICADO = "Identificação Não Autorizada pelo Usuário"; //Mensagem de erro quando o usuário não está autenticado
+        public const string USUARIO_NAO_AUTORIZADO = "Usuário não autorizado";     //Mensagem de erro quando o usuário não tem permissão para acessar um recurso
+    }
+  
 }

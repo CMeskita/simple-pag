@@ -18,7 +18,7 @@ namespace simple_pag.Controllers
             _commandAuthorization = new CommandAuthorization();
         }
         [HttpPost]
-        [Authorize]
+       
         public async Task<IActionResult> CreateFinalizadora([FromBody] CommandFinalizadora request)
         {
             try
@@ -36,7 +36,7 @@ namespace simple_pag.Controllers
         }
         [HttpGet]
         [Route("todos")]
-        [Authorize]
+   
         public async Task<IActionResult> GetAllFinalizadora([FromQuery] CommandGetAllFinalizadora request)
         {
             try
@@ -50,8 +50,7 @@ namespace simple_pag.Controllers
             };
         }
         [HttpGet]
-        [Route("id")]
-        [Authorize]
+        [Route("id")]     
         public async Task<IActionResult> GetIdFinalizadora([FromQuery] CommandGetIdFinalizadora request)
         {
             try
@@ -82,9 +81,105 @@ namespace simple_pag.Controllers
                 return BadRequest(new Response { StatusCode = StatusCodes.Status400BadRequest, Message = ex.Message });
             }
         }
-      
+
+        [HttpGet]
+        [Route("user")]//pegar todas as finalizadors por usuario
+        public async Task<IActionResult> GetUserIdFinalizadora([FromQuery] CommandGetIdUsuarioFinalizadora request)
+        {
+            try
+            {
+                var response = await _mediator.Send(request);
+                if (response == null)
+                {
+                    return NotFound(new Response { StatusCode = StatusCodes.Status404NotFound, Message = "Catalogo não encontrado" });
+                }
+                ;
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new Response { StatusCode = StatusCodes.Status400BadRequest, Message = ex.Message });
+            }
+        }
+        [HttpGet]//pegar pagamento por usuario e finalizadora
+        [Route("user-pagamento")]
+        public async Task<IActionResult> GetUserIdPagamentoFinalizadora([FromQuery] CommandGetIdFinalizadora request)
+        {
+            try
+            {
+                var response = await _mediator.Send(request);
+                if (response == null)
+                {
+                    return NotFound(new Response { StatusCode = StatusCodes.Status404NotFound, Message = "Catalogo não encontrado" });
+                }
+                ;
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new Response { StatusCode = StatusCodes.Status400BadRequest, Message = ex.Message });
+            }
+        }
+        
+        [HttpGet]//pegar pagamento por usuario e finalizadora
+        [Route("faturamento-periodo")]
+        public async Task<IActionResult> GetFinalizadoraPeriodo([FromQuery] CommandGetIdFinalizadora request)
+        {
+            try
+            {
+                var response = await _mediator.Send(request);
+                if (response == null)
+                {
+                    return NotFound(new Response { StatusCode = StatusCodes.Status404NotFound, Message = "Catalogo não encontrado" });
+                }
+                ;
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new Response { StatusCode = StatusCodes.Status400BadRequest, Message = ex.Message });
+            }
+        }
+        [HttpGet]//pegar pagamento por usuario e finalizadora
+        [Route("faturamento-mes")]
+        public async Task<IActionResult> GetFinalizadoraMes([FromQuery] CommandGetIdFinalizadora request)
+        {
+            try
+            {
+                var response = await _mediator.Send(request);
+                if (response == null)
+                {
+                    return NotFound(new Response { StatusCode = StatusCodes.Status404NotFound, Message = "Catalogo não encontrado" });
+                }
+                ;
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new Response { StatusCode = StatusCodes.Status400BadRequest, Message = ex.Message });
+            }
+        }
+        [HttpGet]//pegar pagamento por usuario e finalizadora
+        [Route("faturamento-ano")]
+        public async Task<IActionResult> GetFinalizadoraAno([FromQuery] CommandGetIdFinalizadora request)
+        {
+            try
+            {
+                var response = await _mediator.Send(request);
+                if (response == null)
+                {
+                    return NotFound(new Response { StatusCode = StatusCodes.Status404NotFound, Message = "Catalogo não encontrado" });
+                }
+                ;
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new Response { StatusCode = StatusCodes.Status400BadRequest, Message = ex.Message });
+            }
+        }
 
     }
 
-  
+
 }

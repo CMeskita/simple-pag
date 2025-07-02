@@ -1,5 +1,5 @@
 using simple_pag.Middleware;
-using simple_pag.Util;
+using simple_pag.Shared.Util;
 
 
 

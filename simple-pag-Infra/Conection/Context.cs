@@ -15,12 +15,15 @@ namespace simple_pag_Infra.Conection
         public DbSet<FinalizadoraPagamento> FinalizadoraPagamentos { get; set; }
         public DbSet<Pagamento> Pagamentos { get; set; }
         public DbSet<Usuario> Usuarios { get; set; }
+        public DbSet<Contato> Contatos { get; set; }
         protected override void OnModelCreating(ModelBuilder modelbuilder)
         {
             modelbuilder.Entity<Finalizadora>().HasKey(r => r.Id);
             modelbuilder.Entity<Pagamento>().HasKey(m => m.Id);
             modelbuilder.Entity<Usuario>().HasKey(s => s.Id);
             modelbuilder.Entity<FinalizadoraPagamento>().HasKey(b =>b.Id);
+            modelbuilder.Entity<Contato>().HasKey(b => b.Id);
+
 
             base.OnModelCreating(modelbuilder);
 
