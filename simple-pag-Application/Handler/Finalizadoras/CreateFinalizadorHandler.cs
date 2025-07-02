@@ -86,7 +86,7 @@ namespace simple_pag_Application.Handler.Finalizadoras
             }
         }
         public Response ValidarFormaPagamento(List<CommandPagamentoFinalizadora> pagamentos)
-        {
+        {//Valida forma de pagamento com modalidade avista ou aprzao
             if (pagamentos == null || pagamentos.Count == 0)
             {
                 return new Response
