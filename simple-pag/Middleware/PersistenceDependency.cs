@@ -1,11 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
-using Microsoft.Extensions.Options;
-using MongoDB.Driver;
 using simple_pag_Application.ServiceJWT;
 using simple_pag_Domain.Shared.Interface;
 using simple_pag_Infra.Conection;
-using simple_pag_Infra.MongoRepositorio;
+
 using simple_pag_Infra.Repositories;
 
 namespace simple_pag.Middleware

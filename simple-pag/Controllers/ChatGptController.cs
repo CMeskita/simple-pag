@@ -17,6 +17,7 @@ namespace simple_pag.Controllers
 
         [HttpGet]
         [AllowAnonymous]
+       // [ApiExplorerSettings(IgnoreApi = true)]
         public async Task<IActionResult> PergunteAoChatGpy(string pergunta)
         {
             var response = await _chatGPTServiceApi.ObterRespotaChatGpt(pergunta);

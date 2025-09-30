@@ -4,7 +4,7 @@ using simple_pag.Shared.Util;
 
 
 var builder = WebApplication.CreateBuilder(args);
-ConfigurationManager configuration = builder.Configuration;
+//ConfigurationManager configuration = builder.Configuration;
 // Add services to the container.
 var root = Directory.GetCurrentDirectory();
 var dotenv = Path.Combine(root, ".env");
@@ -17,7 +17,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddSwaggerMiddleware();
 builder.Services.AddJwtMiddleware();
 builder.Services.AddApplication();
-builder.Services.AddPersistence(configuration);
+builder.Services.AddPersistence(builder.Configuration);
 
 
 

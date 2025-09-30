@@ -1,11 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using simple_pag_Domain.Entity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace simple_pag_Infra.Mapping
 {
@@ -33,7 +28,7 @@ namespace simple_pag_Infra.Mapping
 
             builder.Property(usuario => usuario.Registro)
               .HasColumnName("Registro")
-              .HasColumnType("varchar")
+              .HasColumnType("timestamp")
               .HasMaxLength(100)
               .IsRequired();
 
@@ -50,7 +45,7 @@ namespace simple_pag_Infra.Mapping
 
             builder.HasKey(usuario => usuario.Id);
 
-            //builder.Ignore(x => x.Notification);
+            builder.Ignore(x => x.Notification);
         }
     }
 }

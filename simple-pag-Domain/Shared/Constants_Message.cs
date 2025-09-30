@@ -35,5 +35,13 @@ namespace simple_pag_Domain.Shared
         public const string USUARIO_NAO_IDENTIFICADO = "Identificação Não Autorizada pelo Usuário"; //Mensagem de erro quando o usuário não está autenticado
         public const string USUARIO_NAO_AUTORIZADO = "Usuário não autorizado";     //Mensagem de erro quando o usuário não tem permissão para acessar um recurso
     }
-  
+    public static class Pagamento_Modalidade
+    {
+        public const string AVISTA_PIX = "PIX";
+        public const string AVISTA_TRANSFERENCIA = "TRANSFERENCIA";
+        public const string AVISTA_DINHEIRO = "DINHEIRO";
+        public const string AVISTA_MENSAGEM = "Forma de pagamento Difere da Modalidade";
+        public const string PAGAMENTO_MENSAGEM = "Nenhum pagamento informado";
+        public const string PARCELADO_MENSAGEM= "Pagamento parcelado deve ter quantidade de parcelas maior que zero";
+    }
 }

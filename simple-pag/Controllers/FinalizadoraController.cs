@@ -11,33 +11,9 @@ namespace simple_pag.Controllers
     public class FinalizadoraController : ControllerBase
     {
         private readonly IMediator _mediator;
-        CommandAuthorization _commandAuthorization;
-        public FinalizadoraController(IMediator mediator)
-        {
-            _mediator = mediator;
-            _commandAuthorization = new CommandAuthorization();
-        }
-        [HttpPost]
-       
-        public async Task<IActionResult> CreateFinalizadora([FromBody] CommandFinalizadora request)
-        {
-            try
-            {
-                //var headre = HttpContext.Request.Headers.Authorization.ToString();
-              
-
-                var response = await _mediator.Send(request);
-                return StatusCode(201, response);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(new Response { StatusCode = StatusCodes.Status400BadRequest, Message = ex.Message });
-            }
-        }
-        [HttpGet]
-        [Route("todos")]
-   
-        public async Task<IActionResult> GetAllFinalizadora([FromQuery] CommandGetAllFinalizadora request)
+        public FinalizadoraController(IMediator mediator) { _mediator = mediator;}
+        [HttpPost]       
+        public async Task<IActionResult> CadastrarFinalizadora([FromBody] CommandFinalizadora request)
         {
             try
             {
@@ -47,11 +23,24 @@ namespace simple_pag.Controllers
             catch (Exception ex)
             {
                 return BadRequest(new Response { StatusCode = StatusCodes.Status400BadRequest, Message = ex.Message });
+            }
+        }
+        [HttpGet]
+        public async Task<IActionResult> ObterTodasFinalizadora()
+        {
+            try
+            {
+                var response = await _mediator.Send(new CommandObterTodasFinalizadora());
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new Response { StatusCode = StatusCodes.Status400BadRequest, Message = ex.Message });
             };
         }
         [HttpGet]
         [Route("id")]     
-        public async Task<IActionResult> GetIdFinalizadora([FromQuery] CommandGetIdFinalizadora request)
+        public async Task<IActionResult> ObertFinalizadoraPorId([FromQuery] CommandObterFinalizadoraId request)
         {
             try
             {
@@ -67,24 +56,9 @@ namespace simple_pag.Controllers
                 return BadRequest(new Response { StatusCode = StatusCodes.Status400BadRequest, Message = ex.Message });
             }
         }
-        [HttpPut]
-        [Authorize]
-        public async Task<IActionResult> UpdateFinalizadora([FromBody] CommandUpdateFinalizadora request)
-        {
-            try
-            {
-                var response = await _mediator.Send(request);
-                return StatusCode(response.StatusCode, response);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(new Response { StatusCode = StatusCodes.Status400BadRequest, Message = ex.Message });
-            }
-        }
-
         [HttpGet]
-        [Route("user")]//pegar todas as finalizadors por usuario
-        public async Task<IActionResult> GetUserIdFinalizadora([FromQuery] CommandGetIdUsuarioFinalizadora request)
+        [Route("usuario")]//pegar todas as finalizadors por usuario
+        public async Task<IActionResult> ObterFinalizadoraporUsuarioId([FromQuery] CommandObterFinalizadoraPorUsuarioId request)
         {
             try
             {
@@ -102,8 +76,8 @@ namespace simple_pag.Controllers
             }
         }
         [HttpGet]//pegar pagamento por usuario e finalizadora
-        [Route("user-pagamento")]
-        public async Task<IActionResult> GetUserIdPagamentoFinalizadora([FromQuery] CommandGetIdFinalizadora request)
+        [Route("usuario-finalizadora")]
+        public async Task<IActionResult> ObterPagamentosPorUsuarioIdEFinalizadoraId([FromQuery] CommandObterFinalizadoraId request)
         {
             try
             {
@@ -123,7 +97,7 @@ namespace simple_pag.Controllers
         
         [HttpGet]//pegar pagamento por usuario e finalizadora
         [Route("faturamento-periodo")]
-        public async Task<IActionResult> GetFinalizadoraPeriodo([FromQuery] CommandGetIdFinalizadora request)
+        public async Task<IActionResult> ObterFinalizadoraPeriodo([FromQuery] CommandObterFinalizadoraPeriodo request)
         {
             try
             {
@@ -142,7 +116,7 @@ namespace simple_pag.Controllers
         }
         [HttpGet]//pegar pagamento por usuario e finalizadora
         [Route("faturamento-mes")]
-        public async Task<IActionResult> GetFinalizadoraMes([FromQuery] CommandGetIdFinalizadora request)
+        public async Task<IActionResult> ObterTodasFinalizadoraMes([FromQuery] CommandObterFinalizadoraMes request)
         {
             try
             {
@@ -161,7 +135,7 @@ namespace simple_pag.Controllers
         }
         [HttpGet]//pegar pagamento por usuario e finalizadora
         [Route("faturamento-ano")]
-        public async Task<IActionResult> GetFinalizadoraAno([FromQuery] CommandGetIdFinalizadora request)
+        public async Task<IActionResult> ObterTodasFinalizadoraAno([FromQuery] CommandObterFinalizadoraAno request)
         {
             try
             {
@@ -171,6 +145,21 @@ namespace simple_pag.Controllers
                     return NotFound(new Response { StatusCode = StatusCodes.Status404NotFound, Message = "Catalogo não encontrado" });
                 }
                 ;
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new Response { StatusCode = StatusCodes.Status400BadRequest, Message = ex.Message });
+            }
+        }
+
+        [HttpDelete]
+        [Route("cancelamento")]
+        public async Task<IActionResult> CancelarFinalizadora([FromQuery] CommandCancelamentoFinalizadora request)
+        {
+            try
+            {
+                var response = await _mediator.Send(request);
                 return Ok(response);
             }
             catch (Exception ex)

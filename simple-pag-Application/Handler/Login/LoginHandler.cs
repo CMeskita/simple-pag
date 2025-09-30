@@ -24,7 +24,7 @@ namespace simple_pag_Application.Handler.Login
             try
             {
                 Usuario usuario = await _repositorio.GetUsuariobyEmail(request.Email);
-                if (usuario == null)
+                if (usuario.Email == null)
                 {
                     return new TokenResponse
                     {

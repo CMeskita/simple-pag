@@ -1,11 +1,5 @@
 ﻿using simple_pag_Domain.Shared.Notificacao;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Numerics;
-using System.Text;
-using System.Threading.Tasks;
+using static simple_pag_Domain.Shared.Enums.Enums;
 
 namespace simple_pag_Domain.Entity
 {
@@ -34,14 +28,18 @@ namespace simple_pag_Domain.Entity
         }
        
         public string Id { get; set; }
-        public string FinalizadoraId { get; set; }
+      
         public decimal Valor { get; set; }
         public int Parcelas { get; set; }
         public modalidadePagamento Modalidade { get; set; }
+        public DateTime Vencimento { get; set; }
         public string PagamentoId { get; set; }
-        public string Vencimento { get; set; }
+        public string FinalizadoraId { get; set; }
+        public bool IsDeleted { get; protected set; } = false;
+        public DateTime? DeletedAt { get; protected set; } = null;
 
-
+        public virtual Finalizadora Finalizadora { get; set; }
+        public virtual Pagamento Pagamentos { get; set; }
         public Notify Notification => _notify;
 
         private void ValidationRules(bool update = false)
@@ -68,7 +66,7 @@ namespace simple_pag_Domain.Entity
                 _notify.Add("Não há parcelamento para modalidade.");
             }
 
-            if (string.IsNullOrEmpty(Vencimento))
+            if (Vencimento == null)
             {
                 _notify.Add("Vencimento não informado");
             }
@@ -77,62 +75,46 @@ namespace simple_pag_Domain.Entity
                 // Validação de data de vencimento conforme modalidade
                 if (Modalidade == modalidadePagamento.AVISTA)
                 {
-                    if (DateTime.TryParse(Vencimento, out var dataVencimento))
+                    if (Vencimento.Date != DateTime.Today.Date)
                     {
-                        if (dataVencimento.Date.ToString("dd-MM-yyyy") != DateTime.UtcNow.Date.ToString("dd-MM-yyyy"))
-                        {
-                            _notify.Add("Para modalidade AVISTA, o vencimento deve ser a data atual.");
-                        }
+                        _notify.Add("Para modalidade AVISTA, o vencimento deve ser a data atual.");
                     }
-                    else
-                    {
-                        _notify.Add("Data de vencimento inválida.");
-                    }
-                }
-                else if (Modalidade == modalidadePagamento.PARCELADO)
-                {
-                    if (DateTime.TryParse(Vencimento, out var dataVencimento))
-                    {
-                        if (dataVencimento.Date < DateTime.Today.Date)
-                        {
-                            _notify.Add("Para modalidade PARCELADO, o vencimento deve ser uma data futura.");
-                        }
-                    }
-                    else
-                    {
-                        _notify.Add("Data de vencimento inválida.");
-                    }
-                }
-            }
 
+                }
+                if (Modalidade == modalidadePagamento.PARCELADO)
+                {
+
+                    if (Vencimento.Date < DateTime.Today.Date)
+                    {
+                        _notify.Add("Para modalidade PARCELADO, o vencimento deve ser uma data futura.");
+                    }
+                }
+             
+            }
             if (_notify.HasNotifications)
             {
                 throw new BusinessException("Ocorreram erros na tentativa de criação do registro !!!", _notify);
             }
         }
-        public static string CalcularVencimento(modalidadePagamento modalidade, int quantidadePArcela)
+        public static DateTime CalcularVencimento(modalidadePagamento modalidade, int quantidadeParcela)
         {
             if (modalidade == modalidadePagamento.AVISTA)
             {
                 // Para AVISTA, o vencimento é a data atual
-                return DateTime.UtcNow.ToString("dd-MM-yyyy");
+                return DateTime.UtcNow;
             }
             else if (modalidade == modalidadePagamento.PARCELADO)
             {
                 // Para PARCELADO, soma os dias informados à data atual
-                var dataVencimento = DateTime.UtcNow.AddMonths(quantidadePArcela);
-                return dataVencimento.ToString("dd-MM-yyyy");
+                var dataVencimento = DateTime.UtcNow.AddMonths(quantidadeParcela);
+                return dataVencimento;
             }
             else
             {
                 throw new ArgumentException("Modalidade de pagamento inválida.");
             }
         }
-        public enum modalidadePagamento
-        {
-            AVISTA = 1,
-            PARCELADO = 2
-        }
+    
      
     }
 }

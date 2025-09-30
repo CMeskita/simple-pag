@@ -14,16 +14,18 @@ namespace simple_pag_Domain.Entity
         public Usuario(string nome, string email, string chavePrivada)
         {
             Id = Guid.NewGuid().ToString().ToUpper();
-            Nome = nome;
-            Email = email;
-            ChavePrivada = chavePrivada.StringHash();
-            Registro = DateTime.UtcNow.ToString("dd-MM-yyyy HH:mm:ss");
+            Nome = nome.ToUpper().Trim();
+            Email = email.Trim();
+            ChavePrivada = chavePrivada.StringHash().Trim();
+            Registro = DateTime.UtcNow;
             Status = true;
 
             ValidationRules(false);
         }
-        public Usuario(string id, string nome, string email, string chavePrivada,string registro,bool status)
+        public Usuario(string id, string nome, string email, string chavePrivada,DateTime registro,bool status)
         {
+        
+
             Id = id;
             Nome = nome;
             Email = email;
@@ -49,8 +51,10 @@ namespace simple_pag_Domain.Entity
         public string Nome { get; protected set; }
         public string Email { get; protected set; }
         public string ChavePrivada { get; protected set; }
-        public string Registro { get; protected set; }
+        public DateTime Registro { get; protected set; }
         public bool Status { get; protected set; }
+
+        public virtual ICollection<Contato> Contatos { get; set; }
 
         private void ValidationRules(bool update = false)
         {

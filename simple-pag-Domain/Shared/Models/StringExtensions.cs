@@ -47,11 +47,18 @@ namespace simple_pag_Domain.Shared.Models
             return tentativa; // Retorna vazio se não encontrar combinações de 2 letras
         }
 
-        public static string GerarSiglarefresh(string entrada,int contador)
+        public static string GerarSiglarefresh(string sigla,int contador)
         {
-            var teste=entrada.Remove(1, contador);
+            if (sigla.Count() == contador)
+            {
+                contador = contador-2;
+            }
+
+            var validandoSigla=sigla.Remove(1, contador);
+           
+          
             var tentativa = "";
-            var letras = new string(teste)
+            var letras = new string(validandoSigla)
               .Where(char.IsLetter)
               .Select(char.ToUpper)
               .ToArray();
@@ -98,5 +105,7 @@ namespace simple_pag_Domain.Shared.Models
 
             return dict;
         }
+
+       
     }
 }

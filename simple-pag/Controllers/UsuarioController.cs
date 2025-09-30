@@ -20,7 +20,7 @@ namespace simple_pag.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateUsuario([FromBody] CommandUsuario request)
+        public async Task<IActionResult> CadastrarUsuario([FromBody] CommandUsuario request)
         {
 
             try
@@ -39,7 +39,7 @@ namespace simple_pag.Controllers
         
         [HttpPost]
         [Route("contatos")]
-        public async Task<IActionResult> CreateContatoUsuario([FromBody] CommandContatoUsuario request)
+        public async Task<IActionResult> CadastrarContatoDeUsuario([FromBody] CommandContatoUsuario request)
         {
 
             try
@@ -58,11 +58,11 @@ namespace simple_pag.Controllers
         
         [HttpGet]
         [Route("todos")]
-        public async Task<IActionResult> GetAllUsuario()
+        public async Task<IActionResult> ObterTodosUsuario()
         {
             try
             {
-                var response = await _mediator.Send(new CommandGetAllUsuario());
+                var response = await _mediator.Send(new CommandObterTodosUsuario());
                 return Ok(response);
             }
             catch (Exception ex)
@@ -73,11 +73,11 @@ namespace simple_pag.Controllers
         }
         [HttpGet]
         [Route("contatos-usuario")]
-        public async Task<IActionResult> GetAllContatoUuario(string id)
+        public async Task<IActionResult> ObterTodosContatoPorUuarioId([FromQuery] CommandUsuarioIdContato request)
         {
             try
             {
-                var response = await _mediator.Send(new CommandGetAllUsuario());
+                var response = await _mediator.Send(request);
                 return Ok(response);
             }
             catch (Exception ex)
@@ -89,7 +89,7 @@ namespace simple_pag.Controllers
 
         [HttpGet]
         [Route("id")]
-        public async Task<IActionResult> GetIdUsuario([FromQuery] CommandGetIdUsuario request)
+        public async Task<IActionResult> ObterdUsuarioporId([FromQuery] CommandObterUsuarioPorId request)
         {
             try
             {
@@ -108,7 +108,21 @@ namespace simple_pag.Controllers
         }
         
         [HttpPut]
-        public async Task<IActionResult> UpdateUsuario([FromBody] CommandUpdateUsuario request)
+        public async Task<IActionResult> AlterarUsuario([FromBody] CommandAlterarUsuario request)
+        {
+            try
+            {
+                var response = await _mediator.Send(request);
+                return StatusCode(response.StatusCode, response);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new Response { StatusCode = StatusCodes.Status400BadRequest, Message = ex.Message });
+            }
+        }
+        [HttpPut]
+        [Route("contato")]
+        public async Task<IActionResult> AlterarContatoDoUsuario([FromBody] CommandAlterarContatoUsuario request)
         {
             try
             {
@@ -122,7 +136,7 @@ namespace simple_pag.Controllers
         }
         [HttpPut]
         [Route("inativar")]
-        public async Task<IActionResult> UpdateStatusUsuario([FromBody] CommandInativarUsuario request)
+        public async Task<IActionResult> AlterarUsuarioParaInativar([FromBody] CommandInativarUsuario request)
         {
             try
             {

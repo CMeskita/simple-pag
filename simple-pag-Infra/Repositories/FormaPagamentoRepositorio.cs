@@ -3,8 +3,6 @@ using simple_pag_Domain.Entity;
 using Microsoft.EntityFrameworkCore;
 using simple_pag_Domain.Shared.Interface;
 
-
-
 namespace simple_pag_Infra.Repositories
 {
     public class FormaPagamentoRepositorio : IFormaPagamentoRepositorio
@@ -16,7 +14,7 @@ namespace simple_pag_Infra.Repositories
             _context = context;
         }
 
-        public async Task AddPagamento(Pagamento formaPagamento)
+        public async Task CadastrarPagamento(Pagamento formaPagamento)
         {
             var maximoCod = await ObterUltimoCodFinalizadoraAsync() ?? 0;
             formaPagamento.SetCodPagamento(maximoCod + 1);
@@ -33,7 +31,7 @@ namespace simple_pag_Infra.Repositories
             return await _context.Pagamentos.AnyAsync(a => a.Nome == nome.Trim());
         }
 
-        public async Task<Pagamento> FindPagamentoById(string id)
+        public async Task<Pagamento> ObterPagamentoById(string id)
         {
             var data = await _context.Pagamentos.FindAsync(id);
             if (data == null)
@@ -44,9 +42,9 @@ namespace simple_pag_Infra.Repositories
             return data;
         }
 
-        public async Task<IList<Pagamento>> GetAllPagamentos()
+        public IList<Pagamento> ObterTodosPagamentos()
         {
-            return await _context.Pagamentos.ToListAsync();
+            return  _context.Pagamentos.ToList();
         }
 
         public async Task InativarPagamento(Pagamento data)
@@ -63,11 +61,12 @@ namespace simple_pag_Infra.Repositories
             await _context.SaveChangesAsync();
         }
 
-        public async Task UpdateAsync(Pagamento dados)
+        public async Task AlterarPagamento(Pagamento dados)
         {
             _context.Pagamentos.Update(dados);
             _context.Entry(dados).Property(p => p.Status).IsModified = false;
             _context.Entry(dados).Property(x => x.Registro).IsModified = false;
+            _context.Entry(dados).Property(x => x.CodFinalizadora).IsModified = false;
             await _context.SaveChangesAsync();
         }
         public async Task<int?> ObterUltimoCodFinalizadoraAsync()
@@ -75,11 +74,11 @@ namespace simple_pag_Infra.Repositories
             // Retorna o maior valor de CodFinalizadora ou null se não houver registros
             return await _context.Pagamentos.MaxAsync(p => (int?)p.CodFinalizadora);
         }
-        public async Task<bool> ValidaSigla(Pagamento dados)
+        public async Task<bool> ValidaSigladoPagamento(Pagamento dados)
         {
             return await _context.Pagamentos.AnyAsync(a => a.Sigla == dados.Sigla && a.Id != dados.Id);
         }
-        public async Task<IList<string>> GetAllPSiglas()
+        public async Task<IList<string>> ObterTodasSiglasdePagamento()
         {
             return await _context.Pagamentos.Select(s => s.Sigla).ToListAsync();
         }

@@ -23,7 +23,7 @@ namespace simple_pag_Infra.Mapping
 
             builder.Property(finalizadora => finalizadora.Registro)
                 .HasColumnName("Registro")
-                .HasColumnType("varchar")
+                .HasColumnType("timestamptz")
                 .IsRequired();
             builder.Property(finalizadora => finalizadora.UsuarioId)
                 .HasColumnName("UsuarioId")
@@ -31,8 +31,9 @@ namespace simple_pag_Infra.Mapping
                 .IsRequired();
             builder.Property(finalizadora => finalizadora.Status)
                 .HasColumnName("Status")
-                .HasColumnType("varchar")              
+                .HasColumnType("int")              
                 .IsRequired();
+
 
             builder.HasKey(finalizadora => finalizadora.Id);
 

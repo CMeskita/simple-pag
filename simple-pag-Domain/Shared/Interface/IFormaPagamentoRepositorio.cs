@@ -5,15 +5,15 @@ namespace simple_pag_Domain.Shared.Interface
 {
     public interface IFormaPagamentoRepositorio
     {
-        Task AddPagamento(Pagamento formaPagamento);
+        Task CadastrarPagamento(Pagamento formaPagamento);
         Task<bool> ExistePagamento(string id);
-        Task<IList<Pagamento>> GetAllPagamentos();
-        Task<Pagamento> FindPagamentoById(string id);
+        IList<Pagamento> ObterTodosPagamentos();
+        Task<Pagamento> ObterPagamentoById(string id);
         Task InativarPagamento(Pagamento data);
         Task AtivarPagamento(Pagamento data);
-        Task UpdateAsync(Pagamento dados);
-        Task<bool> ValidaSigla(Pagamento dados);
-        Task<IList<string>> GetAllPSiglas();
+        Task AlterarPagamento(Pagamento dados);
+        Task<bool> ValidaSigladoPagamento(Pagamento dados);
+        Task<IList<string>> ObterTodasSiglasdePagamento();
         Task<bool> ExistePagamentoNome(string nome);
     }
 }

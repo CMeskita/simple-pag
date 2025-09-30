@@ -16,8 +16,8 @@ namespace simple_pag_Domain.Entity
         {
             Id = Guid.NewGuid().ToString().ToUpper();
             Nome = StringExtensions.RemoverAcentos(nome).ToUpper().Trim();   
-            Sigla = StringExtensions.GerarSiglaAsync(nome);
-            Registro = DateTime.UtcNow.ToString("dd-MM-yyyy HH:mm:ss");      
+            Sigla = StringExtensions.GerarSiglaAsync(nome).Trim();
+            Registro = DateTime.UtcNow;      
             Status = true;
             ValidationRules(false);
         }
@@ -25,9 +25,9 @@ namespace simple_pag_Domain.Entity
         public Pagamento(string id, string nome, int codFinalizadora, string sigla)
         {
             Id = id;
-            Nome = nome;
+            Nome = StringExtensions.RemoverAcentos(nome).ToUpper().Trim();
             CodFinalizadora = codFinalizadora;
-            Sigla = sigla;
+            Sigla = StringExtensions.GerarSiglaAsync(nome).Trim(); 
 
             ValidationRules(true);
         }
@@ -49,11 +49,13 @@ namespace simple_pag_Domain.Entity
         }
         public Notify Notification => _notify;
         public string Id { get; protected set; }
-        public string Nome { get; protected set; }
+        public string? Nome { get; protected set; }
         public int CodFinalizadora { get; protected set; }
-        public string Registro { get; protected set; }
+        public DateTime Registro { get; protected set; }
         public string Sigla { get; protected set; }
         public bool Status { get; protected set; }
+
+        public virtual ICollection<FinalizadoraPagamento> FinalizadoraPagamentos { get; set; }
 
         private void ValidationRules(bool update = false)
         {

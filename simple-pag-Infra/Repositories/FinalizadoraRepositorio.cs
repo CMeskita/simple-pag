@@ -1,8 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using MongoDB.Driver;
 using MongoDB.Driver.Linq;
 using simple_pag_Domain.Entity;
 using simple_pag_Domain.Shared.Interface;
 using simple_pag_Infra.Conection;
+
+
 
 namespace simple_pag_Infra.Repositories
 {
@@ -14,25 +17,25 @@ namespace simple_pag_Infra.Repositories
         {
             _context = context;
         }
-        public async Task AddFinalizadora(Finalizadora dados)
+        public async Task CadastrarFinalizadora(Finalizadora dados)
         {
             await _context.Finalizadoras.AddAsync(dados);
             _context.SaveChanges();
           
         }
-        public async Task AddFinalizadoraPagamento(FinalizadoraPagamento dados)
+        public async Task CadastrarFinalizadoraPagamento(FinalizadoraPagamento dados)
         {
             await _context.FinalizadoraPagamentos.AddAsync(dados);
             _context.SaveChanges();
 
         }
-        public async Task<IList<FinalizadoraPagamento>> FindFinalizadoraById(string id)
+        public async Task<IList<FinalizadoraPagamento>> ObterPagamentoporFinalizadoraId(string id)
         {
             var result=_context.FinalizadoraPagamentos.Where(p => p.FinalizadoraId == id).ToList();
             return result;
     }
 
-        public IList<Finalizadora> GetAllFinalizadoras()
+        public IList<Finalizadora> ObterTodasFinalizadoras()
         {
             return  _context.Finalizadoras.OrderByDescending(r=>r.Registro).ToList();
         }
@@ -47,35 +50,77 @@ namespace simple_pag_Infra.Repositories
             var result = _context.Finalizadoras.Count();
             return result;
         }
-        //public decimal TotalPagamentosAvista()
-        //{
-        //    var result = _context.Finalizadoras.Where(x => x.QtdParcelas < 1).Sum(x => x.Valor);
-        //    return result;
-        //}
-        //public decimal TotalPagamentosAPrazo()
-        //{
-        //    var result = _context.Finalizadoras.Where(x => x.QtdParcelas >= 1).Sum(x => x.Valor);
-        //    return result;
-        //}
-        public async Task UpdateAsync(Finalizadora dados)
+    
+        public async Task<bool> CancelamentoFinalizadora(string id)
         {
-            _context.Finalizadoras.Update(dados);
-            _context.Entry(dados).Property(x => x.Registro).IsModified = false;           
-            await _context.SaveChangesAsync();
-        }
-        public async Task<Finalizadora> FindFinalizadorById(string id)
-        {
+
             var data = await _context.Finalizadoras.FindAsync(id);
-            if (data == null)
+
+            if (data is null) return false;
+
+            data.Delete();
+
+            if (data.Notification.HasNotifications)
+                return false;
+
+            _context.Entry(data).Property(p => p.IsDeleted).IsModified = true;
+            _context.Entry(data).Property(p => p.DeletedAt).IsModified = true;
+            _context.Finalizadoras.Update(data);
+            await _context.SaveChangesAsync();
+
+            return true;
+        }
+            public async Task<Finalizadora> FindFinalizadorById(string id)
+        {
+           var finalizadoras = _context.Finalizadoras
+                .Include(p => p.FinalizadoraPagamentos)
+                .ThenInclude(fp => fp.Pagamentos)
+                .FirstOrDefault(p => p.Id == id);
+   
+            return finalizadoras;
+        }
+
+        public async Task<Finalizadora> ObterFinalizadora(string id) 
+        {
+            var result = _context.Finalizadoras.Where(p => p.Id == id).FirstOrDefault();
+            if (result == null)
             {
-                data = new Finalizadora();
-                data.Notification.Add("Registro não encontrado");
+                result = new Finalizadora();
+                result.Notification.Add("Finalizadora não encontrada");
             }
-            return data;
+            return result;
+
+
         }
         public async Task<IList<Finalizadora>> FindFinalizadoraByUsuarioId(string id)
         {
             var result = _context.Finalizadoras.Where(p => p.UsuarioId == id).ToList();
+            return result;
+        }
+        public async Task<IList<Finalizadora>> ObterPagamentosPorPeriodo(DateTime dataInicio, DateTime dataFim)
+        {
+            var t = DateTime.SpecifyKind(dataInicio, DateTimeKind.Utc);
+            var f = DateTime.SpecifyKind(dataFim, DateTimeKind.Utc);
+
+            var result = _context.Finalizadoras
+                 .Where(p => p.Registro >= t && p.Registro <= f).ToList();              
+
+            return result;
+        }
+        public async Task<IList<Finalizadora>> ObterPagamentosPorMes(int mes,int ano)
+        {
+
+            var result = _context.Finalizadoras
+                .Where(x => x.Registro.Month == mes && x.Registro.Year == ano).ToList();
+
+            return result;
+        }
+        public async Task<IList<Finalizadora>> ObterPagamentosPorAno(int ano)
+        {
+
+            var result = _context.Finalizadoras
+                .Where(x => x.Registro.Year == ano).ToList();
+
             return result;
         }
 

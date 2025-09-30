@@ -33,7 +33,7 @@ namespace simple_pag_Infra.Mapping
 
             builder.Property(pagamenot => pagamenot.Registro)
               .HasColumnName("Registro")
-              .HasColumnType("varchar")
+              .HasColumnType("timestamptz")
               .HasMaxLength(100)
               .IsRequired();
 

@@ -33,11 +33,11 @@ namespace simple_pag_Infra.Mapping
 
             builder.Property(finalizadora => finalizadora.Parcelas)
                 .HasColumnName("Parcelas")
-                .HasColumnType("varchar")
+                .HasColumnType("int")
                 .IsRequired();
             builder.Property(finalizadora => finalizadora.Modalidade)
                 .HasColumnName("Modalidade")
-                .HasColumnType("varchar")
+                .HasColumnType("int")
                 .IsRequired();
             builder.Property(finalizadora => finalizadora.PagamentoId)
                 .HasColumnName("PagamentoId")
@@ -45,8 +45,9 @@ namespace simple_pag_Infra.Mapping
                 .IsRequired();
             builder.Property(finalizadora => finalizadora.Vencimento)
                .HasColumnName("Vencimento")
-               .HasColumnType("varchar")
+               .HasColumnType("timestamptz")
                .IsRequired();
+
 
             builder.HasKey(finalizadora => finalizadora.Id);
             builder.Ignore(x => x.Notification);
