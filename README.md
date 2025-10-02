@@ -1,6 +1,6 @@
-# Simple Pag - Solução de Gerenciamento de Pagamentos
+# Simple- Pag - Solução simples de Pagamentos
 
-Esta solução é uma API desenvolvida em .NET 8 para o gerenciamento de finalizadoras, formas de pagamento e usuários, utilizando arquitetura moderna, princípios de Clean Architecture, CQRS e MediatR.
+Esta solução é uma API desenvolvida em .NET 8 para o gerenciamento de finalizadoras, formas de pagamento e usuários, utilizando arquitetura moderna, princípios de Clean Architecture, CQRS e MediatR, validando como conclusão de curso.
 
 ---
 <img width="1113" height="884" alt="image" src="https://github.com/user-attachments/assets/5930f50e-0e81-4011-87b8-09aee8cf4f90" />
