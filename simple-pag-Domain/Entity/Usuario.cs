@@ -11,7 +11,7 @@ namespace simple_pag_Domain.Entity
         {
             _notify = new Notify();
         }
-        public Usuario(string nome, string email, string chavePrivada)
+        public Usuario(string nome, string email, string chavePrivada):this()
         {
             Id = Guid.NewGuid().ToString().ToUpper();
             Nome = nome.ToUpper().Trim();
@@ -22,7 +22,7 @@ namespace simple_pag_Domain.Entity
 
             ValidationRules(false);
         }
-        public Usuario(string id, string nome, string email, string chavePrivada,DateTime registro,bool status)
+        public Usuario(string id, string nome, string email, string chavePrivada,DateTime registro,bool status) : this()
         {
         
 

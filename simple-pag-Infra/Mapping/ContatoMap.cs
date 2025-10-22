@@ -28,7 +28,7 @@ namespace simple_pag_Infra.Mapping
 
             builder.Property(usuario => usuario.Registro)
               .HasColumnName("Registro")
-              .HasColumnType("timestamp")
+              .HasColumnType("timestamptz")
               .HasMaxLength(100)
               .IsRequired();
 
